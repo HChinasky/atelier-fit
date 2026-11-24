@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Local config / secrets
+.env
+
+# Model artifact (downloaded via download_model.py, ~9 MB)
+models/*.task

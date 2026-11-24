@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ============================================================================
+  CURATED CATALOG FEED : the real products the live site sells
+  ============================================================================
+  (XML comments may not contain a double hyphen, so dividers use '=' below.)
+
+  NOT the same thing as local_catalog_feed.xml next to it. That file is a
+  deliberately MESSY fixture with placeholder images, written to exercise the
+  parser's error paths, and its truth table is asserted by tests. THIS file is
+  clean production data: every item is a garment the site actually offers, with
+  the name, brand and AED price the owner set, and a photo that really exists
+  under public/dev-catalog/.
+
+  It exists because the partner network (Admitad MENA / Impact / ArabyAds) is
+  still in moderation, so there is no live FEED_URL to import from. Until there
+  is, the catalog is curated by hand and shipped in git, and it reaches an
+  environment through the real import pipeline:
+
+      php artisan catalog:import-file
+
+  (and its "file" option points the same command at any other XML file, which
+  is spelled with two hyphens that an XML comment is not allowed to contain.)
+
+  That command runs the REAL ImportFeedJob (XmlFeedParser to brand filter to
+  upsert), so nothing here takes a shortcut past production code. The upsert
+  keys on external_id and touches ONLY the items listed below, which is why the
+  curated products live in their own file: importing the messy dev fixture into
+  a live catalog would rewrite unrelated rows.
+
+  ============================================================================
+  BRAND ALLOW-LIST
+  ============================================================================
+  ImportFeedJob drops any brand missing from feed.brands (FEED_BRANDS in .env).
+  Every brand below must be listed there or the item is silently filtered:
+  OneByOne, Zimmermann.
+
+  ============================================================================
+  IMAGE URLS ARE ABSOLUTE, ON PURPOSE
+  ============================================================================
+  image_flat_url is handed straight to FASHN as the garment image
+  (GenerateLookJob, GenerateOutfitJob) and FASHN fetches it over the internet.
+  A site-relative "/dev-catalog/x.jpg" is unreachable from there, so these point
+  at the public origin that serves public/dev-catalog/. Change the host here if
+  the site ever moves; nothing derives it at runtime, because a feed is external
+  data and does not get to read our config.
+
+  ============================================================================
+  A NOTE ON flat_bg_verified
+  ============================================================================
+  Import always lands products unverified (the automatic verifier is a stub), so
+  they stay out of GET /api/catalog until a human publishes them:
+
+      php artisan catalog:verify EXTERNAL-ID ...
+
+  Five of the seven dresses below are photographed as the garment alone on
+  white, which is what public/dev-catalog/README.md asks for and what the try-on
+  engine can dress. Two are photographed ON A MODEL: both Zimmermann items. The
+  site owner decided on 2026-09-07 to publish those anyway; the trade-off is
+  recorded in that README, not hidden here. (ONEBYONE-DRESS-MIDI-WHITE-LACE was
+  on a model too until 2026-11-03, when the shop's own garment-alone shot
+  replaced it.)
+-->
+
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Curated Catalog (Atelier Fit)</title>
+    <link>https://demo.atelierfit.example/</link>
+    <description>Hand-curated products the site sells while the partner feed is in moderation.</description>
+
+    <!-- ====================================================================
+         OneByOne : the Ukrainian label the catalog already carries. Dresses
+         are priced at 1,299.00 AED, matching the OneByOne dresses imported
+         before these.
+         ==================================================================== -->
+
+    <item>
+      <g:id>ONEBYONE-DRESS-MAXI-BROWN-CRINKLE</g:id>
+      <g:title>Сукня максі коричневого кольору жатка</g:title>
+      <g:brand>OneByOne</g:brand>
+      <g:link>https://onebyone.com.ua/sample-dress-01</g:link>
+      <g:image_link>https://demo.atelierfit.example/dev-catalog/sample-dress-01.jpg</g:image_link>
+      <g:price>1,299.00 AED</g:price>
+      <g:product_type>Dresses</g:product_type>
+      <g:availability>in stock</g:availability>
+    </item>
+
+    <item>
+      <g:id>ONEBYONE-DRESS-MAXI-RED-DEEP-V</g:id>
+      <g:title>Сукня максі червоного кольору з глибоким вирізом</g:title>
+      <g:brand>OneByOne</g:brand>
+      <g:link>https://onebyone.com.ua/sample-dress-02</g:link>
+      <g:image_link>https://demo.atelierfit.example/dev-catalog/sample-dress-02.jpg</g:image_link>
+      <g:price>1,299.00 AED</g:price>
+      <g:product_type>Dresses</g:product_type>
+      <g:availability>in stock</g:availability>
+    </item>
+
+    <!-- Photographed on a model (see the note at the top of this file). -->
+    <item>
+      <g:id>ONEBYONE-DRESS-MIDI-WHITE-LACE</g:id>
+      <g:title>Сукня міді комбінована білого кольору на бретелях</g:title>
+      <g:brand>OneByOne</g:brand>
+      <g:link>https://onebyone.com.ua/sample-dress-05</g:link>
+      <g:image_link>https://demo.atelierfit.example/dev-catalog/sample-dress-05.jpg</g:image_link>
+      <g:price>1,299.00 AED</g:price>
+      <g:product_type>Dresses</g:product_type>
+      <g:availability>in stock</g:availability>
+    </item>
+
+    <item>
+      <g:id>ONEBYONE-DRESS-MIDI-BLACK-CRINKLE-OPEN-BACK</g:id>
+      <g:title>Сукня міді чорного кольору жатка з відкритою спинкою</g:title>
+      <g:brand>OneByOne</g:brand>
+      <g:link>https://onebyone.com.ua/sample-dress-03</g:link>
+      <g:image_link>https://demo.atelierfit.example/dev-catalog/sample-dress-03.jpg</g:image_link>
+      <g:price>1,299.00 AED</g:price>
+      <g:product_type>Dresses</g:product_type>
+      <g:availability>in stock</g:availability>
+    </item>
+
+    <item>
+      <g:id>ONEBYONE-DRESS-MIDI-BLACK-LACE</g:id>
+      <g:title>Сукня міді чорного кольору з мережива</g:title>
+      <g:brand>OneByOne</g:brand>
+      <g:link>https://onebyone.com.ua/sample-dress-04</g:link>
+      <g:image_link>https://demo.atelierfit.example/dev-catalog/sample-dress-04.jpg</g:image_link>
+      <g:price>1,299.00 AED</g:price>
+      <g:product_type>Dresses</g:product_type>
+      <g:availability>in stock</g:availability>
+    </item>
+
+    <!-- ====================================================================
+         Zimmermann : the Valiant collection, the catalog's designer tier.
+         Prices sit in the range these dresses carry on Ounass in the UAE.
+         Both photos are on a model (see the note at the top of this file).
+         ==================================================================== -->
+
+    <item>
+      <g:id>ZIM-DRESS-VALIANT-FLORAL-CORSET</g:id>
+      <g:title>Valiant Floral Corset Picnic Dress</g:title>
+      <g:brand>Zimmermann</g:brand>
+      <g:link>https://www.ounass.ae/zimmermann-valiant-floral-corset-picnic-dress</g:link>
+      <g:image_link>https://demo.atelierfit.example/dev-catalog/sample-dress-06.jpg</g:image_link>
+      <g:price>5,200.00 AED</g:price>
+      <g:product_type>Dresses</g:product_type>
+      <g:availability>in stock</g:availability>
+    </item>
+
+    <item>
+      <g:id>ZIM-DRESS-VALIANT-LACE-TRIM-MIDI</g:id>
+      <g:title>Valiant Lace Trim Midi Dress</g:title>
+      <g:brand>Zimmermann</g:brand>
+      <g:link>https://www.ounass.ae/sample-dress-07</g:link>
+      <g:image_link>https://demo.atelierfit.example/dev-catalog/sample-dress-07.jpg</g:image_link>
+      <g:price>4,900.00 AED</g:price>
+      <g:product_type>Dresses</g:product_type>
+      <g:availability>in stock</g:availability>
+    </item>
+
+  </channel>
+</rss>

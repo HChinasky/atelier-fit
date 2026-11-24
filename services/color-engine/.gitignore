@@ -1,0 +1,16 @@
+# MediaPipe model artifacts — build artifacts, fetched with scripts/fetch_models.py.
+models/*.task
+models/*.tflite
+
+# CLI debug reports contain face photos. Never committed (UAE PDPL).
+reports/
+
+# Local envs and tool caches (the repo root ignores most of these already; kept
+# here so the package is self-contained if it is ever vendored out).
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/

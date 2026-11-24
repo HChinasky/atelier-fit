@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ============================================================================
+  LOCAL CATALOG FEED : development & test fixture (NOT a real partner feed)
+  ============================================================================
+  (XML comments may not contain a double hyphen, so dividers use '=' below.)
+
+  A deliberately MESSY Google Merchant RSS 2.0 feed that imitates what the real
+  partner network (Admitad MENA / Impact / ArabyAds) will eventually send, while
+  it is still in moderation. ONE file, used two ways, both through the real
+  ImportFeedJob pipeline (parse, brand filter, upsert):
+    * tests/Feature/LocalCatalogFeedTest.php  (integration test on real data)
+    * `php artisan feed:seed-local`           (dev-only catalog seeder)
+
+  It exercises, on purpose and interleaved:
+    * allowed brands (Zara, Mango, Massimo Dutti, H&M, and the modest-wear labels
+      Bouguessa, Modanisa) and foreign ones that the JOB's brand allow-list must
+      drop (Nike, Adidas);
+    * prices in several shapes: "149.00 AED", "AED 249.00", "1,499.00 AED",
+      a foreign currency, and an unparseable one;
+    * categories as Google taxonomy, as free text, and one that maps to nothing;
+    * all three target categories among the survivors (upper_body, lower_body, dresses);
+    * repeated tags (g:size twice) and nesting (g:shipping) to prove the full
+      structural snapshot lands in products.raw losslessly;
+    * items WITH the g: prefix and items WITHOUT it;
+    * the product image under different field names (image_link / picture / photo);
+    * several broken/incomplete items (missing a required field) mixed in.
+
+  ============================================================================
+  TRUTH TABLE : what the import does with each <item> and why
+  (the tests assert exactly this)
+  ============================================================================
+   id                | brand         | outcome             | reason
+   ZARA-SHIRT-01     | Zara          | IMPORTED upper_body | valid; g:-prefixed; image_link
+   NIKE-LEG-05       | Nike          | FILTERED (brand)    | parses fine, brand not allowed
+   MANGO-DRESS-02    | Mango         | IMPORTED dresses    | "1,499.00 AED"; image via g:picture;
+                     |               |                     | repeated g:size + nested g:shipping
+   ZARA-USD-07       | Zara          | SKIPPED (parser)    | price "99.00 USD" (foreign currency)
+   MD-TROUSER-03     | Massimo Dutti | IMPORTED lower_body | NO g: prefix; "AED 249.00";
+                     |               |                     | free-text category; image via photo
+   MANGO-BAG-09      | Mango         | SKIPPED (parser)    | category "Handbags" maps to nothing
+   HM-TOP-04         | H&M           | IMPORTED upper_body | "79.00 AED"; category via product_type
+   ZARA-NOIMG-11     | Zara          | SKIPPED (parser)    | no image_link/picture/photo (required)
+   ADIDAS-JACKET-06  | Adidas        | FILTERED (brand)    | parses fine, brand not allowed
+   ZARA-SALE-08      | Zara          | SKIPPED (parser)    | price "Sale" (unparseable amount)
+   ZARA-NOID-10      | Zara          | SKIPPED (parser)    | missing <id> (required field)
+   BOUG-ABAYA-12     | Bouguessa     | IMPORTED dresses    | modest wear; taxonomy "Abayas"
+   MODA-HIJAB-14     | Modanisa      | IMPORTED upper_body | modest wear; product_type "Hijabs"
+   MODA-SHAYLA-15    | Modanisa      | IMPORTED upper_body | modest wear; product_type "Shaylas"
+
+   Totals: 14 items, 7 imported, 2 brand-filtered, 5 parser-skipped.
+   Imported categories: upper_body x4 (ZARA-SHIRT-01, HM-TOP-04, MODA-HIJAB-14,
+                                       MODA-SHAYLA-15),
+                        lower_body x1 (MD-TROUSER-03),
+                        dresses    x2 (MANGO-DRESS-02, BOUG-ABAYA-12).
+
+  ============================================================================
+  NOTE ON flat_bg_verified : intentionally NOT decided here
+  ============================================================================
+  Whether a product photo is a clean flat-lay (usable for VTON) vs a photo on a
+  model is something only the LIVE feed's real images can tell. The image URLs
+  below are placeholders, so this fixture says nothing about flat_bg_verified:
+  the verifier stays a stub and every imported product lands flat_bg_verified =
+  false (kept out of the catalog) until the real feed and a real verifier exist.
+  Do not read "realism" into these images.
+-->
+
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Local Dev Catalog Feed (fixture)</title>
+    <link>https://local.invalid/catalog</link>
+    <description>Imitated partner feed for development and tests — no real data.</description>
+
+    <!-- IMPORTED: Zara shirt, g:-prefixed, Google taxonomy -> upper_body, image_link -->
+    <item>
+      <g:id>ZARA-SHIRT-01</g:id>
+      <g:title>Oxford Cotton Shirt</g:title>
+      <g:brand>Zara</g:brand>
+      <g:link>https://shop.local/zara/shirt-01</g:link>
+      <g:image_link>/dev-catalog/zara-shirt-01.jpg</g:image_link>
+      <g:price>149.00 AED</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Shirts &amp; Tops</g:google_product_category>
+      <g:availability>in stock</g:availability>
+    </item>
+
+    <!-- FILTERED (brand): Nike parses cleanly but is not in the allow-list -->
+    <item>
+      <g:id>NIKE-LEG-05</g:id>
+      <g:title>Pro Training Leggings</g:title>
+      <g:brand>Nike</g:brand>
+      <g:link>https://shop.local/nike/leg-05</g:link>
+      <g:image_link>https://cdn.local/nike/leg-05.jpg</g:image_link>
+      <g:price>199.00 AED</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Leggings</g:google_product_category>
+    </item>
+
+    <!-- IMPORTED: Mango dress; thousands-separated price; image via <g:picture>;
+         repeated <g:size> tags + nested <g:shipping> exercise the raw snapshot -->
+    <item>
+      <g:id>MANGO-DRESS-02</g:id>
+      <g:title>Pleated Maxi Dress</g:title>
+      <g:brand>Mango</g:brand>
+      <g:link>https://shop.local/mango/dress-02</g:link>
+      <g:picture>/dev-catalog/mango-dress-02.jpg</g:picture>
+      <g:price>1,499.00 AED</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Dresses</g:google_product_category>
+      <g:size>M</g:size>
+      <g:size>L</g:size>
+      <g:color>Blue</g:color>
+      <g:shipping>
+        <g:country>AE</g:country>
+        <g:service>Standard</g:service>
+        <g:price>0.00 AED</g:price>
+      </g:shipping>
+    </item>
+
+    <!-- SKIPPED (parser): allowed brand, but priced in a foreign currency -->
+    <item>
+      <g:id>ZARA-USD-07</g:id>
+      <g:title>Silk Blouse</g:title>
+      <g:brand>Zara</g:brand>
+      <g:link>https://shop.local/zara/blouse-07</g:link>
+      <g:image_link>https://cdn.local/zara/blouse-07.jpg</g:image_link>
+      <g:price>99.00 USD</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Shirts &amp; Tops</g:google_product_category>
+    </item>
+
+    <!-- IMPORTED: Massimo Dutti, NO g: prefix; "AED 249.00"; free-text category;
+         image under <photo> (third fallback name) -->
+    <item>
+      <id>MD-TROUSER-03</id>
+      <title>Wool Blend Trousers</title>
+      <brand>Massimo Dutti</brand>
+      <link>https://shop.local/md/trouser-03</link>
+      <photo>/dev-catalog/md-trouser-03.jpg</photo>
+      <price>AED 249.00</price>
+      <product_type>Women > Trousers</product_type>
+    </item>
+
+    <!-- SKIPPED (parser): category does not map to any FASHN category -->
+    <item>
+      <g:id>MANGO-BAG-09</g:id>
+      <g:title>Leather Shoulder Handbag</g:title>
+      <g:brand>Mango</g:brand>
+      <g:link>https://shop.local/mango/bag-09</g:link>
+      <g:image_link>https://cdn.local/mango/bag-09.jpg</g:image_link>
+      <g:price>450.00 AED</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Handbags</g:google_product_category>
+    </item>
+
+    <!-- IMPORTED: H&M (note the &amp; in brand); category via free-text product_type -->
+    <item>
+      <g:id>HM-TOP-04</g:id>
+      <g:title>Ribbed Knit Top</g:title>
+      <g:brand>H&amp;M</g:brand>
+      <g:link>https://shop.local/hm/top-04</g:link>
+      <g:image_link>/dev-catalog/hm-top-04.jpg</g:image_link>
+      <g:price>79.00 AED</g:price>
+      <g:product_type>Tops</g:product_type>
+    </item>
+
+    <!-- SKIPPED (parser): no image under any known field name (required) -->
+    <item>
+      <g:id>ZARA-NOIMG-11</g:id>
+      <g:title>Cropped Denim Jacket</g:title>
+      <g:brand>Zara</g:brand>
+      <g:link>https://shop.local/zara/jacket-11</g:link>
+      <g:price>259.00 AED</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Outerwear &gt; Jackets</g:google_product_category>
+    </item>
+
+    <!-- FILTERED (brand): Adidas parses cleanly but is not in the allow-list -->
+    <item>
+      <g:id>ADIDAS-JACKET-06</g:id>
+      <g:title>Track Jacket</g:title>
+      <g:brand>Adidas</g:brand>
+      <g:link>https://shop.local/adidas/jacket-06</g:link>
+      <g:image_link>https://cdn.local/adidas/jacket-06.jpg</g:image_link>
+      <g:price>AED 350.00</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Outerwear &gt; Jackets</g:google_product_category>
+    </item>
+
+    <!-- SKIPPED (parser): allowed brand, but the price amount is unparseable -->
+    <item>
+      <g:id>ZARA-SALE-08</g:id>
+      <g:title>Linen Shorts</g:title>
+      <g:brand>Zara</g:brand>
+      <g:link>https://shop.local/zara/shorts-08</g:link>
+      <g:image_link>https://cdn.local/zara/shorts-08.jpg</g:image_link>
+      <g:price>Sale</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Shorts</g:google_product_category>
+    </item>
+
+    <!-- SKIPPED (parser): missing the required <id> field -->
+    <item>
+      <g:title>Mystery Knit</g:title>
+      <g:brand>Zara</g:brand>
+      <g:link>https://shop.local/zara/no-id-10</g:link>
+      <g:image_link>https://cdn.local/zara/no-id-10.jpg</g:image_link>
+      <g:price>129.00 AED</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Sweaters</g:google_product_category>
+    </item>
+
+    <!-- ========================================================================
+         MODEST WEAR : the UAE market's everyday wardrobe
+         ========================================================================
+         Garments a real MENA feed carries and the generic Google taxonomy above
+         does not describe: the abaya and the head coverings worn with it. Their
+         feed categories name the garment, so they exercise the modest block of
+         feed.category_map.
+
+         Category mapping is an APPROXIMATION — see the comment on that block in
+         config/feed.php. The engine has no head region, so the abaya goes to
+         `dresses` (full-body one-pieces) and the head/shoulder coverings go to
+         `upper_body` (the closest region it can dress).
+
+         The khimar and niqab that briefly lived here are gone: a catalog photo
+         must show the GARMENT ALONE (that is what flat_bg_verified means), and
+         no such photo of either exists in the free stock libraries. A photo of
+         a person wearing one is not a substitute — the engine would be handed
+         the customer's photo plus a picture of a different woman. The mapping
+         keys for both stay in config/feed.php, covered by XmlFeedParserTest, so
+         a real feed carrying them still imports correctly.
+         ======================================================================== -->
+
+    <!-- IMPORTED (dresses): abaya, the full-length open robe worn over an outfit -->
+    <item>
+      <g:id>BOUG-ABAYA-12</g:id>
+      <g:title>Embroidered Kaftan Abaya</g:title>
+      <g:brand>Bouguessa</g:brand>
+      <g:link>https://shop.local/bouguessa/abaya-12</g:link>
+      <g:image_link>/dev-catalog/abaya-12.jpg</g:image_link>
+      <g:price>1,850.00 AED</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Abayas</g:google_product_category>
+      <g:availability>in stock</g:availability>
+    </item>
+
+    <!-- IMPORTED (upper_body): hijab, the everyday headscarf -->
+    <item>
+      <g:id>MODA-HIJAB-14</g:id>
+      <g:title>Polka-Dot Silk Hijab</g:title>
+      <g:brand>Modanisa</g:brand>
+      <g:link>https://shop.local/modanisa/hijab-14</g:link>
+      <g:image_link>/dev-catalog/hijab-14.jpg</g:image_link>
+      <g:price>59.00 AED</g:price>
+      <g:product_type>Modest Wear &gt; Hijabs</g:product_type>
+      <g:availability>in stock</g:availability>
+    </item>
+
+    <!-- IMPORTED (upper_body): shayla, the long rectangular Gulf scarf -->
+    <item>
+      <g:id>MODA-SHAYLA-15</g:id>
+      <g:title>Printed Silk Shayla</g:title>
+      <g:brand>Modanisa</g:brand>
+      <g:link>https://shop.local/modanisa/shayla-15</g:link>
+      <g:image_link>/dev-catalog/shayla-15.jpg</g:image_link>
+      <g:price>79.00 AED</g:price>
+      <g:product_type>Modest Wear &gt; Shaylas</g:product_type>
+      <g:availability>in stock</g:availability>
+    </item>
+
+  </channel>
+</rss>

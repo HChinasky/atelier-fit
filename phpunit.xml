@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+>
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory>tests/Feature</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>app</directory>
+        </include>
+    </source>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_MAINTENANCE_DRIVER" value="file"/>
+        <!-- The interface language tests start in; a test that needs another sets it (?lang= or Accept-Language). -->
+        <env name="APP_LOCALE" value="uk" force="true"/>
+        <env name="APP_FALLBACK_LOCALE" value="en" force="true"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="CATALOG_AMAZON_ONLY" value="false"/>
+        <env name="BROADCAST_CONNECTION" value="null"/>
+        <env name="CACHE_STORE" value="array"/>
+        <env name="DB_DATABASE" value="testing"/>
+        <env name="DB_URL" value=""/>
+        <env name="MAIL_MAILER" value="array"/>
+        <!-- The try-on surface (page + its API) ships closed behind
+             FEATURE_FITTING_ROOM, but the suite is exactly what exercises that
+             pipeline, so the flag is ON here. The closed state is covered
+             explicitly by FittingRoomAccessTest, which flips it back off. -->
+        <env name="FEATURE_FITTING_ROOM" value="true"/>
+        <!-- Consent boxes ship switched off (config/consent.php), but the gate
+             they drive is still code that must hold when turned on, so the
+             suite runs with it ON. The off state is covered by
+             ConsentSwitchedOffTest, which flips it back. -->
+        <env name="CONSENT_REQUIRED" value="true"/>
+        <!-- Pose detection is stubbed in tests: the Null detector makes no HTTP
+             call, so the suite never depends on a live pose service. Tests that
+             need real pose data bind a FakePoseDetector instance explicitly. -->
+        <env name="POSE_DRIVER" value="null"/>
+        <!-- Appearance enhancement (9.5) is OFF by default in the suite, so the
+             pipeline is byte-identical to pre-9.5 and makes no enhancement call.
+             Tests that exercise it bind a FakeImageEnhancer instance explicitly. -->
+        <env name="PREPROCESS_LIGHTING" value="false"/>
+        <env name="PREPROCESS_SEGMENT" value="false"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <!-- The job/endpoint tests fake the FASHN protocol end to end, so the suite
+             resolves the FASHN provider by default. The fal provider is covered by
+             its own tests (concrete class) plus an explicit binding-switch test. -->
+        <env name="TRYON_DRIVER" value="fashn"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="PULSE_ENABLED" value="false"/>
+        <env name="TELESCOPE_ENABLED" value="false"/>
+        <env name="NIGHTWATCH_ENABLED" value="false"/>
+    </php>
+</phpunit>

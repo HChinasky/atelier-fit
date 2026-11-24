@@ -1,0 +1,36 @@
+# Direct dependencies, pinned. Verified on Python 3.10 (Windows, CPU-only).
+# Transitive deps (numpy, opencv, protobuf, jax, ...) are resolved by pip; if you
+# need a fully reproducible lock, run `pip freeze > requirements.lock` after install.
+
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+pillow==11.1.0
+numpy==1.26.4            # pinned <2 for MediaPipe 0.10.x compatibility
+mediapipe==0.10.21
+python-dotenv==1.0.1
+
+# --- image enhancement (/preprocess-image): lighting + segmentation ---
+# CPU-only. opencv-python-headless avoids GUI/X11 deps (lighter on a server).
+# rembg pulls onnxruntime; both pinned for reproducibility. numpy stays <2 above.
+opencv-python-headless==4.10.0.84
+rembg==2.0.59
+onnxruntime==1.19.2
+
+# --- seasonal colour analysis (/color-analysis) ---
+# The colour engine is a LOCAL package in this repository, not a release on
+# PyPI. The path is relative to the CURRENT DIRECTORY at install time (pip does
+# not resolve it against this file), so run pip from the pose-service directory.
+#
+# Non-editable on purpose: production gets a copy, so a stray edit in the
+# source tree cannot change what a running service computes. For development
+# install it editable instead and leave this line out:
+#     pip install -e ../services/color-engine
+#
+# It brings no version changes to the pins above - mediapipe, numpy, opencv and
+# pillow are pinned to the same versions in both projects, by design.
+../services/color-engine
+
+# --- test-only ---
+pytest==8.3.4
+httpx==0.28.1            # required by Starlette's TestClient

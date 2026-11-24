@@ -1,0 +1,13 @@
+{
+    "(and :count more error)": "(і ще :count помилка)",
+    "(and :count more errors)": "(і ще :count помилка)|(і ще :count помилки)|(і ще :count помилок)",
+    "The given data was invalid.": "Дані заповнено некоректно.",
+    "Unauthorized": "Потрібно увійти",
+    "Payment Required": "Потрібна оплата",
+    "Forbidden": "Доступ заборонено",
+    "Not Found": "Сторінку не знайдено",
+    "Page Expired": "Сторінка застаріла",
+    "Too Many Requests": "Забагато запитів",
+    "Server Error": "Помилка сервера",
+    "Service Unavailable": "Сервіс тимчасово недоступний"
+}

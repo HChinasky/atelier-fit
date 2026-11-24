@@ -1,0 +1,3549 @@
+{
+  "draft": true,
+  "generator_version": "draft-2",
+  "classifier_version": "draft-2",
+  "generated_by": "color-engine palettes draft",
+  "warning": "Generated from the season prototypes, not chosen by a stylist, and not validated against anybody. Replace group by group as real palettes arrive; rows edited by a stylist are marked source=stylist and are never regenerated.",
+  "seasons": [
+    {
+      "slug": "true_spring",
+      "sort": 0,
+      "point": {
+        "temperature": 1.0,
+        "depth": 0.0,
+        "chroma": 0.5
+      },
+      "groups": [
+        {
+          "name": "neutrals",
+          "recommended": true,
+          "point": {
+            "temperature": 1.0,
+            "depth": 0.0,
+            "chroma": 0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#CAB4B1",
+              "lab": {
+                "L": 75.06,
+                "a": 7.37,
+                "b": 4.41
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#EAD8CE",
+              "lab": {
+                "L": 87.51,
+                "a": 4.55,
+                "b": 7.16
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#EFE7D8",
+              "lab": {
+                "L": 91.89,
+                "a": 0.19,
+                "b": 8.26
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#ACBBAF",
+              "lab": {
+                "L": 74.45,
+                "a": -7.46,
+                "b": 4.31
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#617777",
+              "lab": {
+                "L": 48.34,
+                "a": -8.01,
+                "b": -2.67
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#5A515D",
+              "lab": {
+                "L": 35.69,
+                "a": 6.22,
+                "b": -5.63
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "base",
+          "recommended": true,
+          "point": {
+            "temperature": 1.0,
+            "depth": 0.0,
+            "chroma": 0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#DB9B94",
+              "lab": {
+                "L": 69.92,
+                "a": 23.0,
+                "b": 13.24
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#EABA99",
+              "lab": {
+                "L": 78.99,
+                "a": 12.8,
+                "b": 23.32
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#DECA9B",
+              "lab": {
+                "L": 81.91,
+                "a": 0.01,
+                "b": 26.06
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#85B592",
+              "lab": {
+                "L": 69.55,
+                "a": -23.14,
+                "b": 12.78
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#2F8686",
+              "lab": {
+                "L": 51.12,
+                "a": -25.26,
+                "b": -7.63
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#775980",
+              "lab": {
+                "L": 42.19,
+                "a": 19.83,
+                "b": -17.13
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "accents",
+          "recommended": true,
+          "point": {
+            "temperature": 1.0,
+            "depth": 0.0,
+            "chroma": 0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#F6867D",
+              "lab": {
+                "L": 68.11,
+                "a": 41.7,
+                "b": 24.03
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#F8A86E",
+              "lab": {
+                "L": 75.51,
+                "a": 23.57,
+                "b": 41.68
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#DBBF66",
+              "lab": {
+                "L": 78.04,
+                "a": -1.07,
+                "b": 48.07
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#59B779",
+              "lab": {
+                "L": 67.55,
+                "a": -41.92,
+                "b": 23.24
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#008B8B",
+              "lab": {
+                "L": 52.21,
+                "a": -30.61,
+                "b": -8.99
+              },
+              "compressed": true
+            },
+            {
+              "sort": 5,
+              "hex": "#8B549F",
+              "lab": {
+                "L": 44.71,
+                "a": 36.11,
+                "b": -31.68
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "avoid",
+          "recommended": false,
+          "point": {
+            "temperature": -1.0,
+            "depth": 0.0,
+            "chroma": 0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#ABC46A",
+              "lab": {
+                "L": 75.56,
+                "a": -22.69,
+                "b": 42.2
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#14AC82",
+              "lab": {
+                "L": 62.73,
+                "a": -46.64,
+                "b": 11.44
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#007B89",
+              "lab": {
+                "L": 46.94,
+                "a": -23.28,
+                "b": -15.78
+              },
+              "compressed": true
+            },
+            {
+              "sort": 3,
+              "hex": "#005D96",
+              "lab": {
+                "L": 37.9,
+                "a": -0.93,
+                "b": -37.63
+              },
+              "compressed": true
+            },
+            {
+              "sort": 4,
+              "hex": "#7454A2",
+              "lab": {
+                "L": 42.25,
+                "a": 30.05,
+                "b": -37.52
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#CA6091",
+              "lab": {
+                "L": 55.04,
+                "a": 47.52,
+                "b": -6.85
+              },
+              "compressed": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "true_autumn",
+      "sort": 1,
+      "point": {
+        "temperature": 1.0,
+        "depth": 0.0,
+        "chroma": -0.5
+      },
+      "groups": [
+        {
+          "name": "neutrals",
+          "recommended": true,
+          "point": {
+            "temperature": 1.0,
+            "depth": 0.0,
+            "chroma": -0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#C3B6B4",
+              "lab": {
+                "L": 75.05,
+                "a": 4.26,
+                "b": 2.68
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#E4DAD3",
+              "lab": {
+                "L": 87.65,
+                "a": 2.23,
+                "b": 4.66
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#ECE8DE",
+              "lab": {
+                "L": 92.05,
+                "a": -0.37,
+                "b": 5.34
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#B0B9B2",
+              "lab": {
+                "L": 74.28,
+                "a": -4.44,
+                "b": 2.47
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#697575",
+              "lab": {
+                "L": 48.27,
+                "a": -4.47,
+                "b": -1.53
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#585259",
+              "lab": {
+                "L": 35.66,
+                "a": 3.93,
+                "b": -3.19
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "base",
+          "recommended": true,
+          "point": {
+            "temperature": 1.0,
+            "depth": 0.0,
+            "chroma": -0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#C9A29E",
+              "lab": {
+                "L": 69.98,
+                "a": 13.75,
+                "b": 7.53
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#DBBEAB",
+              "lab": {
+                "L": 78.94,
+                "a": 7.37,
+                "b": 13.4
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#D7CBAF",
+              "lab": {
+                "L": 81.98,
+                "a": -0.37,
+                "b": 15.49
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#95B19C",
+              "lab": {
+                "L": 69.64,
+                "a": -13.77,
+                "b": 7.57
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#578181",
+              "lab": {
+                "L": 51.05,
+                "a": -14.41,
+                "b": -4.64
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#6F5E74",
+              "lab": {
+                "L": 42.22,
+                "a": 11.26,
+                "b": -9.86
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "accents",
+          "recommended": true,
+          "point": {
+            "temperature": 1.0,
+            "depth": 0.0,
+            "chroma": -0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#D8958E",
+              "lab": {
+                "L": 68.06,
+                "a": 24.34,
+                "b": 13.9
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#E2B08E",
+              "lab": {
+                "L": 75.56,
+                "a": 13.69,
+                "b": 24.41
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#D3BF8D",
+              "lab": {
+                "L": 77.89,
+                "a": -0.28,
+                "b": 27.85
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#7DB08C",
+              "lab": {
+                "L": 67.5,
+                "a": -24.43,
+                "b": 13.12
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#2A8A8A",
+              "lab": {
+                "L": 52.4,
+                "a": -26.87,
+                "b": -8.06
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#7F5F89",
+              "lab": {
+                "L": 44.95,
+                "a": 20.99,
+                "b": -18.28
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "avoid",
+          "recommended": false,
+          "point": {
+            "temperature": -1.0,
+            "depth": 0.0,
+            "chroma": -0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#B3C08C",
+              "lab": {
+                "L": 75.56,
+                "a": -13.3,
+                "b": 24.79
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#62A58B",
+              "lab": {
+                "L": 62.82,
+                "a": -27.47,
+                "b": 6.84
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#037B89",
+              "lab": {
+                "L": 46.96,
+                "a": -23.12,
+                "b": -15.74
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#325C86",
+              "lab": {
+                "L": 37.94,
+                "a": -0.89,
+                "b": -27.8
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#6F5C88",
+              "lab": {
+                "L": 42.48,
+                "a": 17.1,
+                "b": -21.61
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#AF728C",
+              "lab": {
+                "L": 55.12,
+                "a": 27.86,
+                "b": -4.2
+              },
+              "compressed": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "true_winter",
+      "sort": 2,
+      "point": {
+        "temperature": -1.0,
+        "depth": 0.0,
+        "chroma": 0.5
+      },
+      "groups": [
+        {
+          "name": "neutrals",
+          "recommended": true,
+          "point": {
+            "temperature": -1.0,
+            "depth": 0.0,
+            "chroma": 0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#DBDFCE",
+              "lab": {
+                "L": 88.11,
+                "a": -4.33,
+                "b": 7.86
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#92A59D",
+              "lab": {
+                "L": 66.1,
+                "a": -8.26,
+                "b": 1.89
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#4B6064",
+              "lab": {
+                "L": 39.21,
+                "a": -6.88,
+                "b": -4.88
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#313A46",
+              "lab": {
+                "L": 24.07,
+                "a": -0.47,
+                "b": -8.61
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#4E4855",
+              "lab": {
+                "L": 31.6,
+                "a": 5.39,
+                "b": -6.8
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#8D7A81",
+              "lab": {
+                "L": 53.13,
+                "a": 8.58,
+                "b": -1.11
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "base",
+          "recommended": true,
+          "point": {
+            "temperature": -1.0,
+            "depth": 0.0,
+            "chroma": 0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#BECA98",
+              "lab": {
+                "L": 79.3,
+                "a": -12.55,
+                "b": 23.66
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#69A78E",
+              "lab": {
+                "L": 63.83,
+                "a": -25.77,
+                "b": 6.66
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#0D7581",
+              "lab": {
+                "L": 44.79,
+                "a": -22.2,
+                "b": -14.28
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#2B527A",
+              "lab": {
+                "L": 33.89,
+                "a": -0.31,
+                "b": -26.81
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#67557E",
+              "lab": {
+                "L": 39.39,
+                "a": 16.25,
+                "b": -20.37
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#AB728A",
+              "lab": {
+                "L": 54.58,
+                "a": 26.06,
+                "b": -3.87
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "accents",
+          "recommended": true,
+          "point": {
+            "temperature": -1.0,
+            "depth": 0.0,
+            "chroma": 0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#ABC46A",
+              "lab": {
+                "L": 75.56,
+                "a": -22.69,
+                "b": 42.2
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#14AC82",
+              "lab": {
+                "L": 62.73,
+                "a": -46.64,
+                "b": 11.44
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#007B89",
+              "lab": {
+                "L": 46.94,
+                "a": -23.28,
+                "b": -15.78
+              },
+              "compressed": true
+            },
+            {
+              "sort": 3,
+              "hex": "#005D96",
+              "lab": {
+                "L": 37.9,
+                "a": -0.93,
+                "b": -37.63
+              },
+              "compressed": true
+            },
+            {
+              "sort": 4,
+              "hex": "#7454A2",
+              "lab": {
+                "L": 42.25,
+                "a": 30.05,
+                "b": -37.52
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#CA6091",
+              "lab": {
+                "L": 55.04,
+                "a": 47.52,
+                "b": -6.85
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "avoid",
+          "recommended": false,
+          "point": {
+            "temperature": 1.0,
+            "depth": 0.0,
+            "chroma": 0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#F6867D",
+              "lab": {
+                "L": 68.11,
+                "a": 41.7,
+                "b": 24.03
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#F8A86E",
+              "lab": {
+                "L": 75.51,
+                "a": 23.57,
+                "b": 41.68
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#DBBF66",
+              "lab": {
+                "L": 78.04,
+                "a": -1.07,
+                "b": 48.07
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#59B779",
+              "lab": {
+                "L": 67.55,
+                "a": -41.92,
+                "b": 23.24
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#008B8B",
+              "lab": {
+                "L": 52.21,
+                "a": -30.61,
+                "b": -8.99
+              },
+              "compressed": true
+            },
+            {
+              "sort": 5,
+              "hex": "#8B549F",
+              "lab": {
+                "L": 44.71,
+                "a": 36.11,
+                "b": -31.68
+              },
+              "compressed": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "true_summer",
+      "sort": 3,
+      "point": {
+        "temperature": -1.0,
+        "depth": 0.0,
+        "chroma": -0.5
+      },
+      "groups": [
+        {
+          "name": "neutrals",
+          "recommended": true,
+          "point": {
+            "temperature": -1.0,
+            "depth": 0.0,
+            "chroma": -0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#DCDED4",
+              "lab": {
+                "L": 88.07,
+                "a": -2.44,
+                "b": 4.67
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#98A39E",
+              "lab": {
+                "L": 66.01,
+                "a": -4.87,
+                "b": 1.25
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#535F61",
+              "lab": {
+                "L": 39.39,
+                "a": -4.15,
+                "b": -2.71
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#353941",
+              "lab": {
+                "L": 23.88,
+                "a": 0.33,
+                "b": -5.52
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#4C4950",
+              "lab": {
+                "L": 31.53,
+                "a": 2.79,
+                "b": -3.71
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#877C80",
+              "lab": {
+                "L": 53.09,
+                "a": 4.95,
+                "b": -0.66
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "base",
+          "recommended": true,
+          "point": {
+            "temperature": -1.0,
+            "depth": 0.0,
+            "chroma": -0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#C1C7AB",
+              "lab": {
+                "L": 79.11,
+                "a": -6.97,
+                "b": 13.34
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#7FA293",
+              "lab": {
+                "L": 63.72,
+                "a": -15.18,
+                "b": 3.87
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#467178",
+              "lab": {
+                "L": 44.9,
+                "a": -12.91,
+                "b": -8.57
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#405168",
+              "lab": {
+                "L": 33.93,
+                "a": -0.23,
+                "b": -15.42
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#635870",
+              "lab": {
+                "L": 39.24,
+                "a": 9.61,
+                "b": -12.02
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#9B7A87",
+              "lab": {
+                "L": 54.7,
+                "a": 14.99,
+                "b": -2.15
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "accents",
+          "recommended": true,
+          "point": {
+            "temperature": -1.0,
+            "depth": 0.0,
+            "chroma": -0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#B3C08C",
+              "lab": {
+                "L": 75.56,
+                "a": -13.3,
+                "b": 24.79
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#62A58B",
+              "lab": {
+                "L": 62.82,
+                "a": -27.47,
+                "b": 6.84
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#037B89",
+              "lab": {
+                "L": 46.96,
+                "a": -23.12,
+                "b": -15.74
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#325C86",
+              "lab": {
+                "L": 37.94,
+                "a": -0.89,
+                "b": -27.8
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#6F5C88",
+              "lab": {
+                "L": 42.48,
+                "a": 17.1,
+                "b": -21.61
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#AF728C",
+              "lab": {
+                "L": 55.12,
+                "a": 27.86,
+                "b": -4.2
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "avoid",
+          "recommended": false,
+          "point": {
+            "temperature": 1.0,
+            "depth": 0.0,
+            "chroma": -0.5
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#D8958E",
+              "lab": {
+                "L": 68.06,
+                "a": 24.34,
+                "b": 13.9
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#E2B08E",
+              "lab": {
+                "L": 75.56,
+                "a": 13.69,
+                "b": 24.41
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#D3BF8D",
+              "lab": {
+                "L": 77.89,
+                "a": -0.28,
+                "b": 27.85
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#7DB08C",
+              "lab": {
+                "L": 67.5,
+                "a": -24.43,
+                "b": 13.12
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#2A8A8A",
+              "lab": {
+                "L": 52.4,
+                "a": -26.87,
+                "b": -8.06
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#7F5F89",
+              "lab": {
+                "L": 44.95,
+                "a": 20.99,
+                "b": -18.28
+              },
+              "compressed": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "deep_autumn",
+      "sort": 4,
+      "point": {
+        "temperature": 0.5,
+        "depth": 1.0,
+        "chroma": 0.0
+      },
+      "groups": [
+        {
+          "name": "neutrals",
+          "recommended": true,
+          "point": {
+            "temperature": 0.5,
+            "depth": 1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#7D6D6B",
+              "lab": {
+                "L": 47.44,
+                "a": 5.92,
+                "b": 3.43
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#958980",
+              "lab": {
+                "L": 57.88,
+                "a": 2.9,
+                "b": 6.45
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#84887C",
+              "lab": {
+                "L": 56.06,
+                "a": -3.79,
+                "b": 5.94
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#5E6B64",
+              "lab": {
+                "L": 43.97,
+                "a": -6.44,
+                "b": 2.26
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#324344",
+              "lab": {
+                "L": 27.05,
+                "a": -6.47,
+                "b": -2.83
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#39313A",
+              "lab": {
+                "L": 21.48,
+                "a": 5.59,
+                "b": -4.36
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "base",
+          "recommended": true,
+          "point": {
+            "temperature": 0.5,
+            "depth": 1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#946561",
+              "lab": {
+                "L": 47.58,
+                "a": 18.42,
+                "b": 9.94
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#A5856A",
+              "lab": {
+                "L": 57.86,
+                "a": 8.3,
+                "b": 19.19
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#7E8B68",
+              "lab": {
+                "L": 55.99,
+                "a": -11.24,
+                "b": 17.2
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#46715C",
+              "lab": {
+                "L": 44.07,
+                "a": -20.05,
+                "b": 7.0
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#00484B",
+              "lab": {
+                "L": 27.14,
+                "a": -18.22,
+                "b": -7.46
+              },
+              "compressed": true
+            },
+            {
+              "sort": 5,
+              "hex": "#442B47",
+              "lab": {
+                "L": 21.62,
+                "a": 17.16,
+                "b": -12.84
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "accents",
+          "recommended": true,
+          "point": {
+            "temperature": 0.5,
+            "depth": 1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#A6544F",
+              "lab": {
+                "L": 45.65,
+                "a": 33.18,
+                "b": 18.46
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#AB7746",
+              "lab": {
+                "L": 54.34,
+                "a": 15.02,
+                "b": 34.79
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#6C8645",
+              "lab": {
+                "L": 52.58,
+                "a": -20.79,
+                "b": 31.82
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#11734F",
+              "lab": {
+                "L": 42.68,
+                "a": -35.9,
+                "b": 12.52
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#004B4E",
+              "lab": {
+                "L": 28.33,
+                "a": -18.76,
+                "b": -7.6
+              },
+              "compressed": true
+            },
+            {
+              "sort": 5,
+              "hex": "#55275C",
+              "lab": {
+                "L": 24.18,
+                "a": 30.28,
+                "b": -22.7
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "avoid",
+          "recommended": false,
+          "point": {
+            "temperature": -0.5,
+            "depth": -1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#D9ECA3",
+              "lab": {
+                "L": 90.5,
+                "a": -18.03,
+                "b": 33.4
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#84E2BB",
+              "lab": {
+                "L": 83.38,
+                "a": -36.71,
+                "b": 10.41
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#2EC8D7",
+              "lab": {
+                "L": 74.06,
+                "a": -33.08,
+                "b": -18.57
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#62ACE9",
+              "lab": {
+                "L": 68.01,
+                "a": -5.45,
+                "b": -37.55
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#BEA0E3",
+              "lab": {
+                "L": 70.62,
+                "a": 23.91,
+                "b": -29.75
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#FFA9CC",
+              "lab": {
+                "L": 78.46,
+                "a": 36.34,
+                "b": -4.71
+              },
+              "compressed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "deep_winter",
+      "sort": 5,
+      "point": {
+        "temperature": -0.5,
+        "depth": 1.0,
+        "chroma": 0.0
+      },
+      "groups": [
+        {
+          "name": "neutrals",
+          "recommended": true,
+          "point": {
+            "temperature": -0.5,
+            "depth": 1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#636F67",
+              "lab": {
+                "L": 45.64,
+                "a": -6.23,
+                "b": 2.92
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#3B4B4A",
+              "lab": {
+                "L": 30.54,
+                "a": -6.54,
+                "b": -1.5
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#1E2B31",
+              "lab": {
+                "L": 16.63,
+                "a": -3.68,
+                "b": -5.67
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#1C2029",
+              "lab": {
+                "L": 12.22,
+                "a": 0.79,
+                "b": -6.64
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#342D36",
+              "lab": {
+                "L": 19.53,
+                "a": 5.23,
+                "b": -4.58
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#5B4D51",
+              "lab": {
+                "L": 34.24,
+                "a": 6.62,
+                "b": -0.19
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "base",
+          "recommended": true,
+          "point": {
+            "temperature": -0.5,
+            "depth": 1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#4D755D",
+              "lab": {
+                "L": 45.76,
+                "a": -19.63,
+                "b": 8.85
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#0B514F",
+              "lab": {
+                "L": 30.69,
+                "a": -20.48,
+                "b": -4.7
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#002E3B",
+              "lab": {
+                "L": 16.84,
+                "a": -9.13,
+                "b": -12.43
+              },
+              "compressed": true
+            },
+            {
+              "sort": 3,
+              "hex": "#07203C",
+              "lab": {
+                "L": 11.99,
+                "a": 2.5,
+                "b": -20.74
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#3C2844",
+              "lab": {
+                "L": 19.62,
+                "a": 15.39,
+                "b": -13.98
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#6F4453",
+              "lab": {
+                "L": 34.27,
+                "a": 20.81,
+                "b": -1.14
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "accents",
+          "recommended": true,
+          "point": {
+            "temperature": -0.5,
+            "depth": 1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#23764E",
+              "lab": {
+                "L": 44.04,
+                "a": -34.78,
+                "b": 15.02
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#005451",
+              "lab": {
+                "L": 31.66,
+                "a": -22.48,
+                "b": -4.55
+              },
+              "compressed": true
+            },
+            {
+              "sort": 2,
+              "hex": "#003544",
+              "lab": {
+                "L": 19.9,
+                "a": -9.76,
+                "b": -13.87
+              },
+              "compressed": true
+            },
+            {
+              "sort": 3,
+              "hex": "#00294E",
+              "lab": {
+                "L": 16.19,
+                "a": 3.07,
+                "b": -26.51
+              },
+              "compressed": true
+            },
+            {
+              "sort": 4,
+              "hex": "#4A265C",
+              "lab": {
+                "L": 22.35,
+                "a": 27.47,
+                "b": -25.68
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#853557",
+              "lab": {
+                "L": 34.44,
+                "a": 37.98,
+                "b": -3.07
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "avoid",
+          "recommended": false,
+          "point": {
+            "temperature": 0.5,
+            "depth": -1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#FFCAC5",
+              "lab": {
+                "L": 85.77,
+                "a": 18.05,
+                "b": 9.67
+              },
+              "compressed": true
+            },
+            {
+              "sort": 1,
+              "hex": "#FFDFC7",
+              "lab": {
+                "L": 90.85,
+                "a": 7.42,
+                "b": 15.83
+              },
+              "compressed": true
+            },
+            {
+              "sort": 2,
+              "hex": "#D1ECA5",
+              "lab": {
+                "L": 89.98,
+                "a": -20.67,
+                "b": 31.59
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#8BE3B9",
+              "lab": {
+                "L": 83.93,
+                "a": -35.69,
+                "b": 12.28
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#3ACDD3",
+              "lab": {
+                "L": 75.62,
+                "a": -35.38,
+                "b": -14.05
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#D7A0DD",
+              "lab": {
+                "L": 72.77,
+                "a": 30.6,
+                "b": -22.96
+              },
+              "compressed": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "light_spring",
+      "sort": 6,
+      "point": {
+        "temperature": 0.5,
+        "depth": -1.0,
+        "chroma": 0.0
+      },
+      "groups": [
+        {
+          "name": "neutrals",
+          "recommended": true,
+          "point": {
+            "temperature": 0.5,
+            "depth": -1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#E5D2D0",
+              "lab": {
+                "L": 85.66,
+                "a": 6.24,
+                "b": 3.37
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#F0E3D9",
+              "lab": {
+                "L": 91.0,
+                "a": 2.75,
+                "b": 6.46
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#E0E4D7",
+              "lab": {
+                "L": 89.97,
+                "a": -3.63,
+                "b": 5.87
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#C6D5CD",
+              "lab": {
+                "L": 83.97,
+                "a": -6.54,
+                "b": 2.22
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#ABBEBE",
+              "lab": {
+                "L": 75.58,
+                "a": -6.47,
+                "b": -2.21
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#BAB0BA",
+              "lab": {
+                "L": 72.91,
+                "a": 5.4,
+                "b": -3.81
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "base",
+          "recommended": true,
+          "point": {
+            "temperature": 0.5,
+            "depth": -1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#FFCAC5",
+              "lab": {
+                "L": 85.77,
+                "a": 18.05,
+                "b": 9.67
+              },
+              "compressed": true
+            },
+            {
+              "sort": 1,
+              "hex": "#FFDFC7",
+              "lab": {
+                "L": 90.85,
+                "a": 7.42,
+                "b": 15.83
+              },
+              "compressed": true
+            },
+            {
+              "sort": 2,
+              "hex": "#DAE8C1",
+              "lab": {
+                "L": 90.08,
+                "a": -11.36,
+                "b": 17.44
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#AEDCC4",
+              "lab": {
+                "L": 84.05,
+                "a": -19.69,
+                "b": 6.91
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#86C5C8",
+              "lab": {
+                "L": 75.56,
+                "a": -19.25,
+                "b": -7.91
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#C7A9CA",
+              "lab": {
+                "L": 72.75,
+                "a": 16.75,
+                "b": -12.72
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "accents",
+          "recommended": true,
+          "point": {
+            "temperature": 0.5,
+            "depth": -1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#FFCAC5",
+              "lab": {
+                "L": 85.77,
+                "a": 18.05,
+                "b": 9.67
+              },
+              "compressed": true
+            },
+            {
+              "sort": 1,
+              "hex": "#FFDFC7",
+              "lab": {
+                "L": 90.85,
+                "a": 7.42,
+                "b": 15.83
+              },
+              "compressed": true
+            },
+            {
+              "sort": 2,
+              "hex": "#D1ECA5",
+              "lab": {
+                "L": 89.98,
+                "a": -20.67,
+                "b": 31.59
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#8BE3B9",
+              "lab": {
+                "L": 83.93,
+                "a": -35.69,
+                "b": 12.28
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#3ACDD3",
+              "lab": {
+                "L": 75.62,
+                "a": -35.38,
+                "b": -14.05
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#D7A0DD",
+              "lab": {
+                "L": 72.77,
+                "a": 30.6,
+                "b": -22.96
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "avoid",
+          "recommended": false,
+          "point": {
+            "temperature": -0.5,
+            "depth": 1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#23764E",
+              "lab": {
+                "L": 44.04,
+                "a": -34.78,
+                "b": 15.02
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#005451",
+              "lab": {
+                "L": 31.66,
+                "a": -22.48,
+                "b": -4.55
+              },
+              "compressed": true
+            },
+            {
+              "sort": 2,
+              "hex": "#003544",
+              "lab": {
+                "L": 19.9,
+                "a": -9.76,
+                "b": -13.87
+              },
+              "compressed": true
+            },
+            {
+              "sort": 3,
+              "hex": "#00294E",
+              "lab": {
+                "L": 16.19,
+                "a": 3.07,
+                "b": -26.51
+              },
+              "compressed": true
+            },
+            {
+              "sort": 4,
+              "hex": "#4A265C",
+              "lab": {
+                "L": 22.35,
+                "a": 27.47,
+                "b": -25.68
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#853557",
+              "lab": {
+                "L": 34.44,
+                "a": 37.98,
+                "b": -3.07
+              },
+              "compressed": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "light_summer",
+      "sort": 7,
+      "point": {
+        "temperature": -0.5,
+        "depth": -1.0,
+        "chroma": 0.0
+      },
+      "groups": [
+        {
+          "name": "neutrals",
+          "recommended": true,
+          "point": {
+            "temperature": -0.5,
+            "depth": -1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#E2E5D8",
+              "lab": {
+                "L": 90.4,
+                "a": -3.28,
+                "b": 5.99
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#C4D3CC",
+              "lab": {
+                "L": 83.28,
+                "a": -6.37,
+                "b": 1.72
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#A7BABC",
+              "lab": {
+                "L": 74.17,
+                "a": -6.09,
+                "b": -3.23
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#9EA7B2",
+              "lab": {
+                "L": 68.11,
+                "a": -0.93,
+                "b": -6.75
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#B1ABB7",
+              "lab": {
+                "L": 70.8,
+                "a": 4.41,
+                "b": -5.37
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#CEBEC4",
+              "lab": {
+                "L": 78.42,
+                "a": 6.69,
+                "b": -0.97
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "base",
+          "recommended": true,
+          "point": {
+            "temperature": -0.5,
+            "depth": -1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#DFE8C1",
+              "lab": {
+                "L": 90.44,
+                "a": -9.59,
+                "b": 17.99
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#AADAC4",
+              "lab": {
+                "L": 83.27,
+                "a": -19.97,
+                "b": 5.75
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#81C1C8",
+              "lab": {
+                "L": 74.18,
+                "a": -18.58,
+                "b": -10.0
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#89A9CB",
+              "lab": {
+                "L": 68.03,
+                "a": -2.83,
+                "b": -20.87
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#B7A6CA",
+              "lab": {
+                "L": 70.6,
+                "a": 13.02,
+                "b": -16.09
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#E6B5C8",
+              "lab": {
+                "L": 78.49,
+                "a": 20.66,
+                "b": -2.79
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "accents",
+          "recommended": true,
+          "point": {
+            "temperature": -0.5,
+            "depth": -1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#D9ECA3",
+              "lab": {
+                "L": 90.5,
+                "a": -18.03,
+                "b": 33.4
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#84E2BB",
+              "lab": {
+                "L": 83.38,
+                "a": -36.71,
+                "b": 10.41
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#2EC8D7",
+              "lab": {
+                "L": 74.06,
+                "a": -33.08,
+                "b": -18.57
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#62ACE9",
+              "lab": {
+                "L": 68.01,
+                "a": -5.45,
+                "b": -37.55
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#BEA0E3",
+              "lab": {
+                "L": 70.62,
+                "a": 23.91,
+                "b": -29.75
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#FFA9CC",
+              "lab": {
+                "L": 78.46,
+                "a": 36.34,
+                "b": -4.71
+              },
+              "compressed": true
+            }
+          ]
+        },
+        {
+          "name": "avoid",
+          "recommended": false,
+          "point": {
+            "temperature": 0.5,
+            "depth": 1.0,
+            "chroma": 0.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#A6544F",
+              "lab": {
+                "L": 45.65,
+                "a": 33.18,
+                "b": 18.46
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#AB7746",
+              "lab": {
+                "L": 54.34,
+                "a": 15.02,
+                "b": 34.79
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#6C8645",
+              "lab": {
+                "L": 52.58,
+                "a": -20.79,
+                "b": 31.82
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#11734F",
+              "lab": {
+                "L": 42.68,
+                "a": -35.9,
+                "b": 12.52
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#004B4E",
+              "lab": {
+                "L": 28.33,
+                "a": -18.76,
+                "b": -7.6
+              },
+              "compressed": true
+            },
+            {
+              "sort": 5,
+              "hex": "#55275C",
+              "lab": {
+                "L": 24.18,
+                "a": 30.28,
+                "b": -22.7
+              },
+              "compressed": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bright_spring",
+      "sort": 8,
+      "point": {
+        "temperature": 0.5,
+        "depth": 0.0,
+        "chroma": 1.0
+      },
+      "groups": [
+        {
+          "name": "neutrals",
+          "recommended": true,
+          "point": {
+            "temperature": 0.5,
+            "depth": 0.0,
+            "chroma": 1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#CCB1AE",
+              "lab": {
+                "L": 74.41,
+                "a": 9.23,
+                "b": 5.12
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#F0DCCE",
+              "lab": {
+                "L": 89.0,
+                "a": 4.61,
+                "b": 9.36
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#D4DBC8",
+              "lab": {
+                "L": 86.42,
+                "a": -5.72,
+                "b": 8.53
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#98AEA3",
+              "lab": {
+                "L": 69.18,
+                "a": -9.8,
+                "b": 3.08
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#557071",
+              "lab": {
+                "L": 45.24,
+                "a": -9.54,
+                "b": -3.77
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#625563",
+              "lab": {
+                "L": 37.83,
+                "a": 8.16,
+                "b": -6.11
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "base",
+          "recommended": true,
+          "point": {
+            "temperature": 0.5,
+            "depth": 0.0,
+            "chroma": 1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#E3968F",
+              "lab": {
+                "L": 69.56,
+                "a": 28.11,
+                "b": 15.63
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#F0BC91",
+              "lab": {
+                "L": 79.92,
+                "a": 13.15,
+                "b": 28.92
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#B3C98F",
+              "lab": {
+                "L": 78.08,
+                "a": -17.44,
+                "b": 26.6
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#68AE8C",
+              "lab": {
+                "L": 65.83,
+                "a": -29.92,
+                "b": 10.61
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#008286",
+              "lab": {
+                "L": 49.11,
+                "a": -27.85,
+                "b": -10.72
+              },
+              "compressed": true
+            },
+            {
+              "sort": 5,
+              "hex": "#825987",
+              "lab": {
+                "L": 43.71,
+                "a": 25.17,
+                "b": -18.93
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "accents",
+          "recommended": true,
+          "point": {
+            "temperature": 0.5,
+            "depth": 0.0,
+            "chroma": 1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#FF7E77",
+              "lab": {
+                "L": 67.66,
+                "a": 48.42,
+                "b": 26.98
+              },
+              "compressed": true
+            },
+            {
+              "sort": 1,
+              "hex": "#FEAA59",
+              "lab": {
+                "L": 76.4,
+                "a": 23.5,
+                "b": 53.34
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#99C65A",
+              "lab": {
+                "L": 74.76,
+                "a": -32.23,
+                "b": 48.66
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#00B37A",
+              "lab": {
+                "L": 64.68,
+                "a": -52.19,
+                "b": 18.51
+              },
+              "compressed": true
+            },
+            {
+              "sort": 4,
+              "hex": "#00868B",
+              "lab": {
+                "L": 50.59,
+                "a": -28.18,
+                "b": -11.43
+              },
+              "compressed": true
+            },
+            {
+              "sort": 5,
+              "hex": "#9C4DA8",
+              "lab": {
+                "L": 45.91,
+                "a": 46.66,
+                "b": -34.97
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "avoid",
+          "recommended": false,
+          "point": {
+            "temperature": -0.5,
+            "depth": 0.0,
+            "chroma": -1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#B6BE9D",
+              "lab": {
+                "L": 75.58,
+                "a": -8.56,
+                "b": 15.76
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#7BA290",
+              "lab": {
+                "L": 63.4,
+                "a": -17.14,
+                "b": 5.05
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#467B81",
+              "lab": {
+                "L": 48.33,
+                "a": -15.93,
+                "b": -8.79
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#415D76",
+              "lab": {
+                "L": 38.31,
+                "a": -3.15,
+                "b": -17.39
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#6C5F7B",
+              "lab": {
+                "L": 42.46,
+                "a": 11.12,
+                "b": -13.78
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#A17A89",
+              "lab": {
+                "L": 55.38,
+                "a": 17.61,
+                "b": -2.23
+              },
+              "compressed": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bright_winter",
+      "sort": 9,
+      "point": {
+        "temperature": -0.5,
+        "depth": 0.0,
+        "chroma": 1.0
+      },
+      "groups": [
+        {
+          "name": "neutrals",
+          "recommended": true,
+          "point": {
+            "temperature": -0.5,
+            "depth": 0.0,
+            "chroma": 1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#DADFCB",
+              "lab": {
+                "L": 87.97,
+                "a": -5.18,
+                "b": 9.22
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#93A99F",
+              "lab": {
+                "L": 67.34,
+                "a": -9.66,
+                "b": 2.58
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#4B666A",
+              "lab": {
+                "L": 41.28,
+                "a": -8.86,
+                "b": -5.48
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#2E3B49",
+              "lab": {
+                "L": 24.29,
+                "a": -1.3,
+                "b": -10.29
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#4F4757",
+              "lab": {
+                "L": 31.48,
+                "a": 6.89,
+                "b": -8.25
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#917A82",
+              "lab": {
+                "L": 53.55,
+                "a": 10.29,
+                "b": -1.04
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "base",
+          "recommended": true,
+          "point": {
+            "temperature": -0.5,
+            "depth": 0.0,
+            "chroma": 1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#BBCB8F",
+              "lab": {
+                "L": 79.19,
+                "a": -15.46,
+                "b": 28.2
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#60AB8C",
+              "lab": {
+                "L": 64.57,
+                "a": -30.72,
+                "b": 8.77
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#007984",
+              "lab": {
+                "L": 46.1,
+                "a": -23.98,
+                "b": -14.09
+              },
+              "compressed": true
+            },
+            {
+              "sort": 3,
+              "hex": "#005581",
+              "lab": {
+                "L": 34.15,
+                "a": -4.51,
+                "b": -30.79
+              },
+              "compressed": true
+            },
+            {
+              "sort": 4,
+              "hex": "#695385",
+              "lab": {
+                "L": 39.38,
+                "a": 19.9,
+                "b": -24.64
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#B46E8B",
+              "lab": {
+                "L": 54.78,
+                "a": 31.74,
+                "b": -4.04
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "accents",
+          "recommended": true,
+          "point": {
+            "temperature": -0.5,
+            "depth": 0.0,
+            "chroma": 1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#A5C658",
+              "lab": {
+                "L": 75.51,
+                "a": -27.8,
+                "b": 50.65
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#00AF7F",
+              "lab": {
+                "L": 63.5,
+                "a": -49.5,
+                "b": 14.15
+              },
+              "compressed": true
+            },
+            {
+              "sort": 2,
+              "hex": "#007F89",
+              "lab": {
+                "L": 48.24,
+                "a": -25.34,
+                "b": -13.8
+              },
+              "compressed": true
+            },
+            {
+              "sort": 3,
+              "hex": "#005F90",
+              "lab": {
+                "L": 38.2,
+                "a": -4.64,
+                "b": -33.54
+              },
+              "compressed": true
+            },
+            {
+              "sort": 4,
+              "hex": "#7750AF",
+              "lab": {
+                "L": 42.39,
+                "a": 36.58,
+                "b": -44.97
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#D85594",
+              "lab": {
+                "L": 55.31,
+                "a": 57.42,
+                "b": -7.98
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "avoid",
+          "recommended": false,
+          "point": {
+            "temperature": 0.5,
+            "depth": 0.0,
+            "chroma": -1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#C69A96",
+              "lab": {
+                "L": 67.52,
+                "a": 15.8,
+                "b": 8.41
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#D5B79E",
+              "lab": {
+                "L": 76.36,
+                "a": 6.97,
+                "b": 16.71
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#B1BC9C",
+              "lab": {
+                "L": 74.64,
+                "a": -9.52,
+                "b": 14.94
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#7FA592",
+              "lab": {
+                "L": 64.56,
+                "a": -16.97,
+                "b": 5.64
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#4D8183",
+              "lab": {
+                "L": 50.59,
+                "a": -16.78,
+                "b": -6.55
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#7D657F",
+              "lab": {
+                "L": 45.91,
+                "a": 14.55,
+                "b": -10.83
+              },
+              "compressed": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "soft_autumn",
+      "sort": 10,
+      "point": {
+        "temperature": 0.5,
+        "depth": 0.0,
+        "chroma": -1.0
+      },
+      "groups": [
+        {
+          "name": "neutrals",
+          "recommended": true,
+          "point": {
+            "temperature": 0.5,
+            "depth": 0.0,
+            "chroma": -1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#BDB5B4",
+              "lab": {
+                "L": 74.29,
+                "a": 2.65,
+                "b": 1.52
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#E5DFDA",
+              "lab": {
+                "L": 89.16,
+                "a": 1.17,
+                "b": 3.17
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#D7D9D3",
+              "lab": {
+                "L": 86.39,
+                "a": -1.75,
+                "b": 2.71
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#A4ABA7",
+              "lab": {
+                "L": 69.33,
+                "a": -3.23,
+                "b": 1.2
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#656D6D",
+              "lab": {
+                "L": 45.37,
+                "a": -3.03,
+                "b": -1.05
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#5C575C",
+              "lab": {
+                "L": 37.6,
+                "a": 3.06,
+                "b": -2.16
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "base",
+          "recommended": true,
+          "point": {
+            "temperature": 0.5,
+            "depth": 0.0,
+            "chroma": -1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#BDA4A2",
+              "lab": {
+                "L": 69.45,
+                "a": 8.79,
+                "b": 4.4
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#D5C3B6",
+              "lab": {
+                "L": 79.93,
+                "a": 4.18,
+                "b": 8.82
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#BDC4B2",
+              "lab": {
+                "L": 78.18,
+                "a": -5.66,
+                "b": 8.21
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#91A59A",
+              "lab": {
+                "L": 65.95,
+                "a": -9.2,
+                "b": 3.34
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#5F797A",
+              "lab": {
+                "L": 48.9,
+                "a": -9.12,
+                "b": -3.65
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#706371",
+              "lab": {
+                "L": 43.6,
+                "a": 7.96,
+                "b": -5.97
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "accents",
+          "recommended": true,
+          "point": {
+            "temperature": 0.5,
+            "depth": 0.0,
+            "chroma": -1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#C69A96",
+              "lab": {
+                "L": 67.52,
+                "a": 15.8,
+                "b": 8.41
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#D5B79E",
+              "lab": {
+                "L": 76.36,
+                "a": 6.97,
+                "b": 16.71
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#B1BC9C",
+              "lab": {
+                "L": 74.64,
+                "a": -9.52,
+                "b": 14.94
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#7FA592",
+              "lab": {
+                "L": 64.56,
+                "a": -16.97,
+                "b": 5.64
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#4D8183",
+              "lab": {
+                "L": 50.59,
+                "a": -16.78,
+                "b": -6.55
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#7D657F",
+              "lab": {
+                "L": 45.91,
+                "a": 14.55,
+                "b": -10.83
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "avoid",
+          "recommended": false,
+          "point": {
+            "temperature": -0.5,
+            "depth": 0.0,
+            "chroma": 1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#A5C658",
+              "lab": {
+                "L": 75.51,
+                "a": -27.8,
+                "b": 50.65
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#00AF7F",
+              "lab": {
+                "L": 63.5,
+                "a": -49.5,
+                "b": 14.15
+              },
+              "compressed": true
+            },
+            {
+              "sort": 2,
+              "hex": "#007F89",
+              "lab": {
+                "L": 48.24,
+                "a": -25.34,
+                "b": -13.8
+              },
+              "compressed": true
+            },
+            {
+              "sort": 3,
+              "hex": "#005F90",
+              "lab": {
+                "L": 38.2,
+                "a": -4.64,
+                "b": -33.54
+              },
+              "compressed": true
+            },
+            {
+              "sort": 4,
+              "hex": "#7750AF",
+              "lab": {
+                "L": 42.39,
+                "a": 36.58,
+                "b": -44.97
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#D85594",
+              "lab": {
+                "L": 55.31,
+                "a": 57.42,
+                "b": -7.98
+              },
+              "compressed": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "soft_summer",
+      "sort": 11,
+      "point": {
+        "temperature": -0.5,
+        "depth": 0.0,
+        "chroma": -1.0
+      },
+      "groups": [
+        {
+          "name": "neutrals",
+          "recommended": true,
+          "point": {
+            "temperature": -0.5,
+            "depth": 0.0,
+            "chroma": -1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#DCDDD7",
+              "lab": {
+                "L": 87.89,
+                "a": -1.4,
+                "b": 2.82
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#9FA6A2",
+              "lab": {
+                "L": 67.47,
+                "a": -3.25,
+                "b": 1.21
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#5B6364",
+              "lab": {
+                "L": 41.32,
+                "a": -2.86,
+                "b": -1.63
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#373A3F",
+              "lab": {
+                "L": 24.31,
+                "a": -0.05,
+                "b": -3.53
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#4C494E",
+              "lab": {
+                "L": 31.47,
+                "a": 2.34,
+                "b": -2.53
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#857E81",
+              "lab": {
+                "L": 53.49,
+                "a": 3.23,
+                "b": -0.68
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "base",
+          "recommended": true,
+          "point": {
+            "temperature": -0.5,
+            "depth": 0.0,
+            "chroma": -1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#C2C6B4",
+              "lab": {
+                "L": 79.13,
+                "a": -4.59,
+                "b": 8.55
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#8CA298",
+              "lab": {
+                "L": 64.71,
+                "a": -9.73,
+                "b": 2.61
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#587275",
+              "lab": {
+                "L": 46.17,
+                "a": -8.69,
+                "b": -4.77
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#455260",
+              "lab": {
+                "L": 34.28,
+                "a": -1.48,
+                "b": -9.82
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#615A69",
+              "lab": {
+                "L": 39.37,
+                "a": 6.01,
+                "b": -7.54
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#937E86",
+              "lab": {
+                "L": 54.91,
+                "a": 9.47,
+                "b": -1.34
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "accents",
+          "recommended": true,
+          "point": {
+            "temperature": -0.5,
+            "depth": 0.0,
+            "chroma": -1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#B6BE9D",
+              "lab": {
+                "L": 75.58,
+                "a": -8.56,
+                "b": 15.76
+              },
+              "compressed": false
+            },
+            {
+              "sort": 1,
+              "hex": "#7BA290",
+              "lab": {
+                "L": 63.4,
+                "a": -17.14,
+                "b": 5.05
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#467B81",
+              "lab": {
+                "L": 48.33,
+                "a": -15.93,
+                "b": -8.79
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#415D76",
+              "lab": {
+                "L": 38.31,
+                "a": -3.15,
+                "b": -17.39
+              },
+              "compressed": false
+            },
+            {
+              "sort": 4,
+              "hex": "#6C5F7B",
+              "lab": {
+                "L": 42.46,
+                "a": 11.12,
+                "b": -13.78
+              },
+              "compressed": false
+            },
+            {
+              "sort": 5,
+              "hex": "#A17A89",
+              "lab": {
+                "L": 55.38,
+                "a": 17.61,
+                "b": -2.23
+              },
+              "compressed": false
+            }
+          ]
+        },
+        {
+          "name": "avoid",
+          "recommended": false,
+          "point": {
+            "temperature": 0.5,
+            "depth": 0.0,
+            "chroma": 1.0
+          },
+          "colors": [
+            {
+              "sort": 0,
+              "hex": "#FF7E77",
+              "lab": {
+                "L": 67.66,
+                "a": 48.42,
+                "b": 26.98
+              },
+              "compressed": true
+            },
+            {
+              "sort": 1,
+              "hex": "#FEAA59",
+              "lab": {
+                "L": 76.4,
+                "a": 23.5,
+                "b": 53.34
+              },
+              "compressed": false
+            },
+            {
+              "sort": 2,
+              "hex": "#99C65A",
+              "lab": {
+                "L": 74.76,
+                "a": -32.23,
+                "b": 48.66
+              },
+              "compressed": false
+            },
+            {
+              "sort": 3,
+              "hex": "#00B37A",
+              "lab": {
+                "L": 64.68,
+                "a": -52.19,
+                "b": 18.51
+              },
+              "compressed": true
+            },
+            {
+              "sort": 4,
+              "hex": "#00868B",
+              "lab": {
+                "L": 50.59,
+                "a": -28.18,
+                "b": -11.43
+              },
+              "compressed": true
+            },
+            {
+              "sort": 5,
+              "hex": "#9C4DA8",
+              "lab": {
+                "L": 45.91,
+                "a": 46.66,
+                "b": -34.97
+              },
+              "compressed": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

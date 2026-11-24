@@ -1,0 +1,212 @@
+{
+  "generator_version": "draft-2",
+  "draft": true,
+  "notes": [
+    "DRAFT, and more provisional than the classifier. These palettes are",
+    "GENERATED from the season prototypes by the rules below - nobody chose",
+    "them, and no colour here was copied from another site's palette. They exist",
+    "so the page has something real to render and a stylist has something",
+    "concrete to disagree with, and they are meant to be replaced.",
+    "",
+    "The Laravel tables are the source of truth once seeded. A row a stylist",
+    "edits is marked source=stylist and this generator never touches it again.",
+    "",
+    "Changing anything here means changing `generator_version`."
+  ],
+  "hues": {
+    "count": 6,
+    "why": "Six colours per group. A wardrobe palette needs a red, a yellow, a green, a teal, a blue and a violet whatever the season - what changes is WHICH red, and which of those a season may have at all.",
+    "why_ranges": "Temperature used to ROTATE six evenly spaced hues by up to 25 degrees. That is the wrong shape for the thing being modelled: a 25 degree turn does not move a golden ochre out of a winter palette, it moves it to a slightly different ochre. deep_winter came out holding #A5896B and #A87B45 - ochre and mustard - which is wrong for a cool season even as a draft. Temperature now chooses the ARCS a season may draw from, and the hues are spread evenly along whatever arc is left. A warm season simply has no blue-violet to pick and a cool season has no golden yellow.",
+    "why_leading_vs_secondary": "A season whose LEADING axis is temperature is the strict case - being warm or cool is what it is named for. Where temperature is only secondary the bands open up by a few degrees at each edge, because the season is named for its depth or its clarity and the warm/cool call is a modifier rather than the point.",
+    "bands": {
+      "_comment": "CIELAB hue angles. Roughly: 15-40 warm red and coral, 40-95 orange through golden yellow, 95-130 lemon and yellow-green, 130-175 green, 175-240 teal and blue-green, 255-300 blue through blue-violet, 300-340 red-violet (plum, aubergine - warm palettes have these), 340-375 (wrapping past 360) raspberry and fuchsia. Ranges may run past 360 to express the wrap.",
+      "warm_yellow_orange": [
+        40.0,
+        95.0
+      ],
+      "cool_blue_violet": [
+        255.0,
+        300.0
+      ]
+    },
+    "allowed": {
+      "warm": {
+        "leading": [
+          [
+            15.0,
+            95.0
+          ],
+          [
+            125.0,
+            160.0
+          ],
+          [
+            175.0,
+            212.0
+          ],
+          [
+            304.0,
+            334.0
+          ]
+        ],
+        "secondary": [
+          [
+            10.0,
+            100.0
+          ],
+          [
+            120.0,
+            168.0
+          ],
+          [
+            172.0,
+            218.0
+          ],
+          [
+            302.0,
+            342.0
+          ]
+        ],
+        "why": "Warm red through golden yellow, warm green, teal, and RED-violet - plum and aubergine, which an autumn palette needs. No blue-violet and no cool raspberry."
+      },
+      "cool": {
+        "leading": [
+          [
+            98.0,
+            130.0
+          ],
+          [
+            138.0,
+            178.0
+          ],
+          [
+            185.0,
+            240.0
+          ],
+          [
+            255.0,
+            330.0
+          ],
+          [
+            333.0,
+            372.0
+          ]
+        ],
+        "secondary": [
+          [
+            95.0,
+            135.0
+          ],
+          [
+            133.0,
+            182.0
+          ],
+          [
+            180.0,
+            245.0
+          ],
+          [
+            250.0,
+            334.0
+          ],
+          [
+            330.0,
+            376.0
+          ]
+        ],
+        "why": "Lemon rather than golden yellow, cool green, teal, the whole blue-violet arc, and raspberry through fuchsia past 360. No orange and no golden yellow."
+      },
+      "cool_deep": {
+        "leading": [
+          [
+            140.0,
+            182.0
+          ],
+          [
+            185.0,
+            245.0
+          ],
+          [
+            252.0,
+            332.0
+          ],
+          [
+            336.0,
+            374.0
+          ]
+        ],
+        "secondary": [
+          [
+            136.0,
+            186.0
+          ],
+          [
+            182.0,
+            248.0
+          ],
+          [
+            250.0,
+            334.0
+          ],
+          [
+            332.0,
+            376.0
+          ]
+        ],
+        "why": "The cool arcs with lemon and yellow-green removed. What is left is green through teal, the whole blue-violet arc and raspberry - which is what a deep cool palette is: emerald, teal, royal blue, violet, a true red."
+      }
+    },
+    "deep_lightness": 46.0,
+    "why_deep": "A hue band is not cool or warm on its own - it depends where the lightness lands. Lemon and yellow-green read cool while they are LIGHT; take the same hues down to L* 36, where a deep season sits, and they are olive, which is a warm colour. deep_winter's first accent came out #748745. So a season whose lightness centre falls below `deep_lightness` uses the `<stance>_deep` arcs if the file defines any, and its own stance otherwise. Only `cool_deep` is defined, because deep WARM seasons may have olive and moss - that is what they are for."
+  },
+  "lightness": {
+    "centre": 58.0,
+    "span": 22.0,
+    "hue_spread": 12.0,
+    "min": 12.0,
+    "max": 92.0,
+    "why_bounds": "The lightness excursion is scaled down symmetrically until it fits between these, rather than being clamped at them. Clamping collapsed a light season's two lightest colours into the same white: a palette cannot contain the same colour twice and still be six colours. Narrowing instead keeps them distinct, and a light season whose palette is narrow in lightness is not a defect - that is what a light season is. The bounds stop short of 0 and 100 because pure black and pure white belong to no season in particular.",
+    "why_centre": "Mid L*, where most wearable colour sits. Depth moves it: a fully light season centres at 80, a fully deep one at 36.",
+    "why_hue_spread": "Lightness also follows hue, peaking at yellow and troughing at blue. Not decoration - sRGB simply has no dark saturated yellow and no light saturated violet, so a flat L* across the circle would send the compressor to work on half the palette. Following the gamut's own shape keeps more chroma than fighting it."
+  },
+  "chroma": {
+    "centre": 38.0,
+    "span": 20.0,
+    "why": "The chroma axis moves saturation: a bright season centres at C* 58, a soft one at 18. Both are inside sRGB for most hues at mid lightness; where they are not, the gamut step below deals with it."
+  },
+  "groups": {
+    "neutrals": {
+      "size": 6,
+      "chroma_ratio": 0.18,
+      "lightness_spread": 26.0,
+      "recommended": true,
+      "why": "Nearly grey, spread wide in lightness - the beiges, taupes, greys and navies a wardrobe is built on. They still carry the season's hue rotation, which is the whole difference between a warm stone and a cool grey."
+    },
+    "base": {
+      "size": 6,
+      "chroma_ratio": 0.55,
+      "lightness_spread": 12.0,
+      "recommended": true,
+      "why": "Half chroma, close to the season's own lightness: the backbone pieces that have a colour without being a statement."
+    },
+    "accents": {
+      "size": 6,
+      "chroma_ratio": 1.0,
+      "lightness_spread": 8.0,
+      "recommended": true,
+      "why": "Full chroma at the season's lightness. The statement colours."
+    },
+    "avoid": {
+      "size": 6,
+      "chroma_ratio": 1.0,
+      "lightness_spread": 8.0,
+      "recommended": false,
+      "why": "The accents of the opposite pole. Generated from the prototype with its LEADING axis flipped AND its temperature flipped, so the group draws from the other temperature's hue bands as well as the other end of the leading axis. Every season in this system has temperature as either its leading or its secondary characteristic, so there is always a temperature to flip; when temperature IS the leading axis the two flips are the same one."
+    }
+  },
+  "gamut": {
+    "bisection_steps": 24,
+    "tolerance": 0.0005,
+    "why": "Out-of-gamut colours have their CHROMA COMPRESSED, keeping L* and hue, rather than being dropped. Dropping would leave holes at exactly the hues where a season is most saturated - a bright winter would lose its blue - and would make the group sizes depend on the season. A compressed colour is still the right hue at the right lightness, which is what a garment is matched on. The largest in-gamut fraction of the chroma is found by bisection, which is deterministic to the last bit."
+  }
+}

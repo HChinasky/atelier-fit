@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Partner Feed (dirty)</title>
+
+    <!-- g:-prefixed item, image under the canonical image_link -->
+    <item>
+      <g:id>PREFIXED-1</g:id>
+      <g:title>Cotton Trousers</g:title>
+      <g:brand>Mango</g:brand>
+      <g:link>https://shop.test/p/prefixed-1</g:link>
+      <g:image_link>https://cdn.test/prefixed-1.jpg</g:image_link>
+      <g:price>249.00 AED</g:price>
+      <g:product_type>Clothing > Trousers</g:product_type>
+    </item>
+
+    <!-- No g: prefix at all; image under the "picture" fallback name -->
+    <item>
+      <id>BARE-2</id>
+      <title>Wool Sweater</title>
+      <brand>Zara</brand>
+      <link>https://shop.test/p/bare-2</link>
+      <picture>https://cdn.test/bare-2.jpg</picture>
+      <price>89.00 AED</price>
+      <product_type>Clothing > Sweaters</product_type>
+    </item>
+
+    <!-- No g: prefix; image under the "photo" fallback name -->
+    <item>
+      <id>BARE-3</id>
+      <title>Denim Jacket</title>
+      <brand>Mango</brand>
+      <link>https://shop.test/p/bare-3</link>
+      <photo>https://cdn.test/bare-3.jpg</photo>
+      <price>199.00 AED</price>
+      <product_type>Clothing > Jackets</product_type>
+    </item>
+
+  </channel>
+</rss>

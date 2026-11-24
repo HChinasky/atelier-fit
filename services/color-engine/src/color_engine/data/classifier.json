@@ -1,0 +1,178 @@
+{
+  "version": "draft-4",
+  "draft": true,
+  "notes": [
+    "DRAFT. Every number in this file was chosen from the structure of the",
+    "12-season system and from where healthy skin, hair and eyes sit in CIELAB -",
+    "not measured against labelled faces, because there is no labelled set yet.",
+    "Treat them as a shape to argue with, not as calibration.",
+    "",
+    "draft-4 (2026-11-19) re-weights against the stylist's questionnaire answers:",
+    "the 12 seasons are defined exactly as she defines them (no prototype moved);",
+    "contrast is read first and hair-on-skin carries it; depth counts hair, skin",
+    "and eyes about equally; chroma counts contrast, eye saturation and skin",
+    "saturation; the quiz hears tanning ahead of veins ahead of metal. Her answers",
+    "are importance ratings, not measurements - nothing here is validated against",
+    "labelled faces, because she declined to label photos.",
+    "",
+    "Changing anything here means changing `version` too: a test compares the",
+    "file's hash against the version, so a silent edit cannot ship. That is the",
+    "whole point of the classifier living in data - a change to how seasons are",
+    "decided should be a diff anybody can read, not a patch to an algorithm."
+  ],
+
+  "axes": {
+    "temperature": {
+      "description": "cool (-1) .. warm (+1)",
+      "features": {
+        "skin_hue": {
+          "weight": 0.38,
+          "min_chroma": 3.0,
+          "anchors": [[35.0, -1.0], [48.0, 0.0], [62.0, 1.0]],
+          "why": "The hue angle of skin, and the single most reliable signal here: skin is the largest, highest-chroma zone on a face. A cool undertone reads rosy, which puts a* ahead of b* and pulls the angle down; a warm one reads golden and pushes it up. Below `min_chroma` the sample is near-neutral and its hue angle is the direction of the noise rather than of the undertone, so the feature drops out."
+        },
+        "skin_b": {
+          "weight": 0.22,
+          "anchors": [[10.0, -1.0], [16.0, 0.0], [24.0, 1.0]],
+          "why": "How yellow the skin is. Correlated with hue rather than independent of it, which is why it carries about half the weight - it is corroboration, not a second opinion."
+        },
+        "hair_b": {
+          "weight": 0.2,
+          "anchors": [[3.0, -1.0], [8.0, 0.0], [16.0, 1.0]],
+          "why": "b* rather than hue: dark hair has little chroma, and a hue angle computed from a near-neutral a*b* is noise dressed as a measurement."
+        },
+        "iris_b": {
+          "weight": 0.2,
+          "anchors": [[-18.0, -1.0], [0.0, 0.0], [16.0, 1.0]],
+          "why": "Blue and grey eyes sit at strongly negative b*, amber and warm brown at positive. b* and not hue, because hue is circular and these two families sit on opposite sides of the wrap."
+        }
+      },
+      "zone_reliability": {
+        "anchors": [[6.0, 0.3], [20.0, 1.0]],
+        "why": "How much a zone's tone reading is worth, from its own C*. Hue is an ANGLE, and the angle of a near-neutral sample is the direction of its noise - so a weight that ignores chroma treats a guess and a measurement as equals. On the first classified frame the skin came back at C* 9.9 carrying weight 0.45 while saturated natural red hair at C* 23.8 carried 0.15, and the hair was by far the better evidence. Each temperature feature's weight is multiplied by this and the survivors are renormalised, so the shares move but the axis stays bounded. The same curve for skin, hair and iris - a zone earns its say by how much colour it actually has, and nothing here knows what a redhead is. The floor is 0.3 rather than 0 because a near-neutral zone still says something with the SIGN of its b*, and because a hard zero would make the axis jump as C* crossed a threshold. PRELIMINARY: C* 6 is about where a sample stops being arguably grey, C* 20 is solidly chromatic."
+      },
+      "quiz": {
+        "max_shift": 0.25,
+        "may_flip_sign": false,
+        "why": "Self-reported answers nudge, they do not decide. A person who has been told they are 'a winter' answers like a winter, so letting the quiz outvote the photograph would measure the belief rather than the face. It can move the value by at most a quarter of the scale and can never carry it across zero.",
+        "question_weights": { "tanning": 4.0, "veins": 3.0, "metal": 2.0 },
+        "question_weights_why": "How much each question counts when several are answered, from the stylist's own ratings of how well each tells undertone (tanning 4, veins 3, gold-or-silver 2). Only the ratio matters.",
+        "answers": {
+          "metal": { "gold": 1.0, "silver": -1.0, "both": 0.0 },
+          "veins": { "green": 1.0, "blue": -1.0, "mixed": 0.0 },
+          "tanning": { "tans": 1.0, "burns": -1.0, "both": 0.0 }
+        }
+      }
+    },
+
+    "depth": {
+      "description": "light (-1) .. deep (+1)",
+      "features": {
+        "hair_L": {
+          "weight": 0.4,
+          "anchors": [[70.0, -1.0], [45.0, 0.0], [20.0, 1.0]],
+          "why": "Hair carries depth more than anything else on a face: it is the widest range of lightness a person has, from platinum to black, while skin spans far less."
+        },
+        "skin_L": {
+          "weight": 0.35,
+          "anchors": [[82.0, -1.0], [65.0, 0.0], [42.0, 1.0]],
+          "why": "Second, not first. Skin lightness is also the axis most easily moved by exposure, and the quality gate can only bound that, not remove it."
+        },
+        "iris_L": {
+          "weight": 0.25,
+          "anchors": [[65.0, -1.0], [45.0, 0.0], [25.0, 1.0]],
+          "why": "A small zone, and the least of the three - but a pale grey eye and a near-black one are a real difference in depth."
+        }
+      }
+    },
+
+    "chroma": {
+      "description": "soft (-1) .. bright (+1)",
+      "quiz": {
+        "max_shift": 0.25,
+        "may_flip_sign": false,
+        "why": "The same rule as temperature's quiz, on the axis the question is about: which colours a person finds suit them near the face is a belief about their own clarity, so it nudges and never decides. At most a quarter of the scale, never across zero.",
+        "answers": {
+          "clarity": {"clear": 1.0, "soft": -1.0, "unsure": 0.0}
+        }
+      },
+      "features": {
+        "contrast": {
+          "weight": 0.36,
+          "anchors": [[0.25, -1.0], [0.45, 0.0], [0.7, 1.0]],
+          "why": "Brightness in this system is as much about the distance between a person's own colours as about saturation. A soft type is one whose hair, skin and eyes sit close together."
+        },
+        "iris_C": {
+          "weight": 0.36,
+          "anchors": [[6.0, -1.0], [14.0, 0.0], [26.0, 1.0]],
+          "why": "The eye is the most saturated thing on most faces and the clearest read on whether the colouring is clear or muted."
+        },
+        "skin_C": {
+          "weight": 0.28,
+          "anchors": [[14.0, -1.0], [20.0, 0.0], [30.0, 1.0]],
+          "why": "Skin chroma varies less between people than eye chroma does, so it moves the axis less."
+        }
+      }
+    }
+  },
+
+  "contrast": {
+    "description": "0 (everything close together) .. 1 (wide apart)",
+    "features": {
+      "hair_skin": {
+        "weight": 0.7,
+        "anchors": [[10.0, 0.0], [55.0, 1.0]],
+        "why": "The dominant contrast on a face, and the one a stylist reads first: dark hair against light skin is the whole of what 'high contrast' usually means."
+      },
+      "iris_sclera": {
+        "weight": 0.3,
+        "anchors": [[15.0, 0.0], [55.0, 1.0]],
+        "why": "Iris against the white of the same eye - the second contrast a stylist reads, and the one that separates a dark-eyed light blonde from a light-eyed one. Smaller than hair against skin, and absent whenever the sclera could not be measured, so it carries the lesser weight."
+      }
+    }
+  },
+
+  "missing_data": {
+    "dyed_hair_confidence": 0.75,
+    "no_hair_confidence": 0.8,
+    "no_iris_confidence": 0.85,
+    "no_sclera_confidence": 0.95,
+    "why": "Every exclusion costs confidence rather than being silently absorbed. Dyed hair costs the most because hair carries half of depth and a fifth of temperature, and dye tells you about a decision rather than about a person."
+  },
+
+  "seasons": {
+    "weights": {
+      "leading": 1.0,
+      "secondary": 0.6,
+      "third": 0.2,
+      "why": "The leading characteristic is what the season is named for, so it dominates. The secondary is what separates the three seasons sharing that lead. The third is near-ignored but not ignored: at zero weight two prototypes on the same plane would tie exactly, and a tie is the one answer that helps nobody."
+    },
+    "leading_value": 1.0,
+    "secondary_value": 0.5,
+    "why_values": "A prototype sits at the far end of its leading axis and half way along its secondary, which is what 'light and slightly warm' means in a system whose members are defined by one characteristic and modified by a second.",
+
+    "prototypes": {
+      "light_spring":  { "leading": ["depth", -1],      "secondary": ["temperature", 1] },
+      "light_summer":  { "leading": ["depth", -1],      "secondary": ["temperature", -1] },
+      "true_spring":   { "leading": ["temperature", 1], "secondary": ["chroma", 1] },
+      "true_autumn":   { "leading": ["temperature", 1], "secondary": ["chroma", -1] },
+      "true_summer":   { "leading": ["temperature", -1],"secondary": ["chroma", -1] },
+      "true_winter":   { "leading": ["temperature", -1],"secondary": ["chroma", 1] },
+      "bright_spring": { "leading": ["chroma", 1],      "secondary": ["temperature", 1] },
+      "bright_winter": { "leading": ["chroma", 1],      "secondary": ["temperature", -1] },
+      "soft_summer":   { "leading": ["chroma", -1],     "secondary": ["temperature", -1] },
+      "soft_autumn":   { "leading": ["chroma", -1],     "secondary": ["temperature", 1] },
+      "deep_autumn":   { "leading": ["depth", 1],       "secondary": ["temperature", 1] },
+      "deep_winter":   { "leading": ["depth", 1],       "secondary": ["temperature", -1] }
+    },
+
+    "temperature": 0.28,
+    "why_temperature": "The softmax temperature that turns distances into scores. Low enough that a face sitting on a prototype scores clearly above the rest, high enough that one sitting between two neighbours splits between them instead of picking arbitrarily - which is exactly the case where the confidence should come out low."
+  },
+
+  "confidence": {
+    "margin_anchors": [[0.0, 0.15], [0.05, 0.35], [0.15, 0.7], [0.35, 1.0]],
+    "min_confidence_for_season": 0.4,
+    "why": "Confidence starts from how far the winner is ahead of the runner-up, then everything the pipeline already knows about the photograph multiplies it down. A dead heat is 0.15 and not 0: the season is still the best available reading, and the flag says how much to trust it."
+  }
+}

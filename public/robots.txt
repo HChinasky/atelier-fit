@@ -1,0 +1,10 @@
+# Meta's crawlers may read the pages Meta's app settings point at (data
+# deletion instructions, the legal documents) — and nothing else.
+User-agent: facebookexternalhit
+User-agent: meta-externalagent
+Allow: /data-deletion
+Allow: /legal/
+Disallow: /
+
+User-agent: *
+Disallow: /

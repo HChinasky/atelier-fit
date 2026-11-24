@@ -1,0 +1,713 @@
+{
+  "$defs": {
+    "Axes": {
+      "additionalProperties": false,
+      "description": "The three seasonal axes, each in -1..1. Filled by the features stage.",
+      "properties": {
+        "temperature": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": -1.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "-1 cool .. +1 warm.",
+          "title": "Temperature"
+        },
+        "depth": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": -1.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "-1 light .. +1 deep.",
+          "title": "Depth"
+        },
+        "chroma": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": -1.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "-1 soft .. +1 bright.",
+          "title": "Chroma"
+        }
+      },
+      "title": "Axes",
+      "type": "object"
+    },
+    "Classifier": {
+      "additionalProperties": false,
+      "description": "Which classifier decided the season, and how far to trust it.\n\nPresent only when a season was actually computed - a refused photo has no\nseasons and nothing to say about them.",
+      "properties": {
+        "version": {
+          "description": "Version of the classifier DATA (src/color_engine/data/classifier.json), not of the package. Every anchor point, weight and prototype lives there, so this is the thing that changes when seasons start coming out differently.",
+          "title": "Version",
+          "type": "string"
+        },
+        "draft": {
+          "description": "True while the anchor points and prototypes are reasoned rather than measured. Nothing in this classifier has been checked against faces a stylist labelled, because there is no such set yet. Consumers must say so to the user.",
+          "title": "Draft",
+          "type": "boolean"
+        },
+        "low_confidence": {
+          "default": false,
+          "description": "Confidence fell below the data file's min_confidence_for_season. The season is still the best available reading - this says how much of one it is.",
+          "title": "Low Confidence",
+          "type": "boolean"
+        },
+        "exclusions": {
+          "description": "Every feature the classifier could not use, with its reason. Empty when it had everything.",
+          "items": {
+            "$ref": "#/$defs/ExcludedFeature"
+          },
+          "title": "Exclusions",
+          "type": "array"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ConfidenceBreakdown"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "How the confidence was arrived at. Null when no season was placed."
+        }
+      },
+      "required": [
+        "version",
+        "draft"
+      ],
+      "title": "Classifier",
+      "type": "object"
+    },
+    "ConfidenceBreakdown": {
+      "additionalProperties": false,
+      "description": "The confidence, taken apart into what made it.\n\n``final`` is the product of the three. Published whole because a number\nsomebody is expected to act on should be arguable, and it cannot be argued\nwith unless the argument is visible.",
+      "properties": {
+        "margin": {
+          "default": 0.0,
+          "description": "The RAW gap between the top two scores. Zero on a dead heat. Reported beside `from_margin` rather than folded into it, because the two are different numbers and a page showing one under the other's name is worse than showing neither: the first live frame had two seasons tied at 0.1445 and the label 'how far the first season is ahead of the second' read 0.150.",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Margin",
+          "type": "number"
+        },
+        "from_margin": {
+          "description": "That gap put through the confidence curve. Never zero - a dead heat still earns the curve's floor, because the season is still the best available reading.",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "From Margin",
+          "type": "number"
+        },
+        "features_factor": {
+          "description": "What the missing or excluded zones cost.",
+          "exclusiveMinimum": 0.0,
+          "maximum": 1.0,
+          "title": "Features Factor",
+          "type": "number"
+        },
+        "quality_factor": {
+          "description": "What the photograph cost: white balance, exposure, uneven light - everything the earlier stages concluded, multiplied together.",
+          "exclusiveMinimum": 0.0,
+          "maximum": 1.0,
+          "title": "Quality Factor",
+          "type": "number"
+        },
+        "final": {
+          "description": "The product, and what `confidence` is.",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Final",
+          "type": "number"
+        }
+      },
+      "required": [
+        "from_margin",
+        "features_factor",
+        "quality_factor",
+        "final"
+      ],
+      "title": "ConfidenceBreakdown",
+      "type": "object"
+    },
+    "Contrast": {
+      "additionalProperties": false,
+      "description": "Contrast measures between zones. Filled by the features stage.",
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Overall value contrast: spread of L* across hair, skin and eyes.",
+          "title": "Value"
+        },
+        "hair_skin": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "L* distance between hair and skin.",
+          "title": "Hair Skin"
+        },
+        "eye_skin": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "L* distance between iris and skin.",
+          "title": "Eye Skin"
+        },
+        "iris_sclera": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "L* distance between the iris and the white of the same eye. The second contrast the classifier reads, and the one that separates a dark-eyed light blonde from a light-eyed one.",
+          "title": "Iris Sclera"
+        }
+      },
+      "title": "Contrast",
+      "type": "object"
+    },
+    "ExcludedFeature": {
+      "additionalProperties": false,
+      "description": "One input the classifier did not have, and why.\n\nIn the contract rather than only in the debug artifacts, for the same reason\n``ZoneStatus`` is: a confidence of 0.31 with no explanation is an assertion,\nand the page that has to justify it to a stylist is a consumer of this\ncontract, not a reader of our debug objects.",
+      "properties": {
+        "axis": {
+          "description": "temperature, depth, chroma, or contrast.",
+          "title": "Axis",
+          "type": "string"
+        },
+        "feature": {
+          "description": "The feature name in the classifier data file.",
+          "title": "Feature",
+          "type": "string"
+        },
+        "reason": {
+          "description": "dyed_hair, hair_not_measured, iris_not_measured, sclera_not_measured, skin_not_measured, skin_too_neutral, contrast_not_measured.",
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "axis",
+        "feature",
+        "reason"
+      ],
+      "title": "ExcludedFeature",
+      "type": "object"
+    },
+    "EyeParts": {
+      "additionalProperties": false,
+      "description": "One eye zone measured on each side separately.\n\nLeft and right are the SUBJECT's, as everywhere in this package - the\nsubject's left eye is on the right of a frontal photo.\n\nThese exist because ``zones`` promises a verdict for ``iris_left`` and\n``iris_right`` and there was nowhere to put the measurement behind it. A\nconsumer rendering a row per zone got \"not measured\" for a side that had in\nfact been measured perfectly well, with no reason beside it, because the\nside was usable and so had nothing to explain.",
+      "properties": {
+        "left": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LabSample"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "right": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LabSample"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "EyeParts",
+      "type": "object"
+    },
+    "LabSample": {
+      "additionalProperties": false,
+      "description": "One zone, measured in CIELAB (D65, CIE 1931 2 degree observer).",
+      "properties": {
+        "L": {
+          "description": "Median lightness L*, 0..100.",
+          "title": "L",
+          "type": "number"
+        },
+        "a": {
+          "description": "Median a*, green(-) to red(+).",
+          "title": "A",
+          "type": "number"
+        },
+        "b": {
+          "description": "Median b*, blue(-) to yellow(+).",
+          "title": "B",
+          "type": "number"
+        },
+        "C": {
+          "description": "Chroma, hypot(a*, b*), computed from the median a*/b*.",
+          "title": "C",
+          "type": "number"
+        },
+        "h": {
+          "description": "Hue angle in degrees, 0..360, from the median a*/b*.",
+          "title": "H",
+          "type": "number"
+        },
+        "pixels": {
+          "description": "Pixels that survived masking and outlier rejection.",
+          "title": "Pixels",
+          "type": "integer"
+        },
+        "L_iqr": {
+          "description": "Interquartile range of L* in the zone - how uniform the sample is.",
+          "title": "L Iqr",
+          "type": "number"
+        }
+      },
+      "required": [
+        "L",
+        "a",
+        "b",
+        "C",
+        "h",
+        "pixels",
+        "L_iqr"
+      ],
+      "title": "LabSample",
+      "type": "object"
+    },
+    "RejectReason": {
+      "description": "Why a photo cannot be analysed. Stable strings - Laravel maps them to copy.",
+      "enum": [
+        "low_resolution",
+        "no_face",
+        "multiple_faces",
+        "face_too_small",
+        "face_not_frontal",
+        "unsupported_format",
+        "file_too_large",
+        "insufficient_skin",
+        "low_light",
+        "uneven_light",
+        "overexposed",
+        "color_cast",
+        "makeup_filter"
+      ],
+      "title": "RejectReason",
+      "type": "string"
+    },
+    "Samples": {
+      "additionalProperties": false,
+      "description": "Measured colour per zone.\n\n``None`` means nothing was measured: the zone was absent, or too little of\nit survived masking to measure at all.\n\n**Not** \"the zone was rejected.\" A zone that produced a sample keeps its\nnumbers here however it was then judged, and ``zones`` carries the verdict\nbeside them. They used to be cleared together, which threw away the one\nthing a rejection is worth reviewing on: \"darker_than_skin\" does not say how\nmuch darker, so nobody could tell a rule that missed by 1 L* from one that\nmissed by 30, and a threshold nobody can see the margin on cannot be argued\nwith.\n\nNothing downstream measures with a rejected zone - the aggregates and the\nclassifier read the verdict, not the presence of numbers.",
+      "properties": {
+        "skin": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LabSample"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Pooled sample over the skin sub-zones that were usable. Not always all three: a blown cheek is measured, reported, and left out of this."
+        },
+        "skin_parts": {
+          "$ref": "#/$defs/SkinParts"
+        },
+        "hair": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LabSample"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "iris": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LabSample"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Both irises pooled - over the pixels each eye kept, and only from the eyes that passed every check. Never a fresh measurement of the union of the masks, which would re-admit what each eye's own filtering threw out."
+        },
+        "iris_parts": {
+          "$ref": "#/$defs/EyeParts",
+          "description": "Each iris on its own, whatever the verdict on it. A side that was rejected keeps its numbers here and is not in `iris` above."
+        },
+        "sclera": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LabSample"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Both scleras pooled, on the same rule."
+        },
+        "sclera_parts": {
+          "$ref": "#/$defs/EyeParts",
+          "description": "Each sclera on its own, whatever the verdict on it. A side that was rejected keeps its numbers here and is not in `sclera` above."
+        }
+      },
+      "title": "Samples",
+      "type": "object"
+    },
+    "Season": {
+      "description": "The 12 seasons. Slugs are the contract; never localise these.",
+      "enum": [
+        "light_spring",
+        "true_spring",
+        "bright_spring",
+        "light_summer",
+        "true_summer",
+        "soft_summer",
+        "soft_autumn",
+        "true_autumn",
+        "deep_autumn",
+        "deep_winter",
+        "true_winter",
+        "bright_winter"
+      ],
+      "title": "Season",
+      "type": "string"
+    },
+    "SeasonScore": {
+      "additionalProperties": false,
+      "properties": {
+        "slug": {
+          "$ref": "#/$defs/Season"
+        },
+        "score": {
+          "description": "Normalised fit, 1 is best.",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Score",
+          "type": "number"
+        }
+      },
+      "required": [
+        "slug",
+        "score"
+      ],
+      "title": "SeasonScore",
+      "type": "object"
+    },
+    "SkinParts": {
+      "additionalProperties": false,
+      "description": "The three skin sub-zones, each measured on its own.",
+      "properties": {
+        "left_cheek": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LabSample"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "right_cheek": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LabSample"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "forehead": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LabSample"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "SkinParts",
+      "type": "object"
+    },
+    "Status": {
+      "enum": [
+        "ok",
+        "rejected"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "WhiteBalance": {
+      "additionalProperties": false,
+      "description": "What was done about the light, and how sure we are of it.",
+      "properties": {
+        "enabled": {
+          "default": false,
+          "description": "Whether the white-balance step was switched on for this run at all. Separate from `method` because 'we did not try' and 'we tried and could not' are different answers, and only one of them is about the photograph.",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WhiteBalanceReason"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Why `method` is `none`. Null when a correction was applied."
+        },
+        "method": {
+          "$ref": "#/$defs/WhiteBalanceMethod",
+          "default": "none",
+          "description": "Which reference the illuminant was estimated from."
+        },
+        "single_eye": {
+          "default": false,
+          "description": "True when only one sclera was usable, so the estimate rests on one eye.",
+          "title": "Single Eye",
+          "type": "boolean"
+        },
+        "correction_strength": {
+          "default": 0.0,
+          "description": "How far the estimated illuminant sat from D65, as Euclidean distance in CIE 1976 u'v'. 0 when nothing was applied. Beyond a threshold the photo is rejected as color_cast instead of corrected.",
+          "minimum": 0.0,
+          "title": "Correction Strength",
+          "type": "number"
+        },
+        "estimated_cct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Correlated colour temperature of the estimated illuminant in kelvin, or null when there is no estimate or it sits too far off the Planckian locus to mean anything.",
+          "title": "Estimated Cct"
+        },
+        "target_calibrated": {
+          "default": false,
+          "description": "Whether the sclera's target chromaticity has been measured on a real reference set. False means the correction is pulling the sclera to exact neutral, which a healthy sclera is not, and every result carries a systematic cool bias of that size. Consumers should treat an uncalibrated result as provisional.",
+          "title": "Target Calibrated",
+          "type": "boolean"
+        }
+      },
+      "title": "WhiteBalance",
+      "type": "object"
+    },
+    "WhiteBalanceMethod": {
+      "description": "Where the illuminant estimate came from.\n\nThe order is the order of preference: the sclera is the only near-neutral\nreference a face reliably carries, the scene behind the person is the\nfallback, and ``none`` means neither could be trusted and the samples are\nreported as measured. Skin is never a reference - correcting the light\nagainst it would absorb the undertone the analysis exists to measure.",
+      "enum": [
+        "sclera",
+        "scene",
+        "none"
+      ],
+      "title": "WhiteBalanceMethod",
+      "type": "string"
+    },
+    "WhiteBalanceReason": {
+      "description": "Why ``method`` came out ``none``.\n\n``method: none`` on its own cannot be read. It covers a deployment that\nnever wanted correction, a frame whose eyes were unusable, and a frame whose\nbackground was too dark to estimate from - three different things, only one\nof which is a fact about the photograph. A page showing the first as though\nit were the second sends somebody off to retake a photo that was fine.",
+      "enum": [
+        "disabled",
+        "sclera_unusable",
+        "sclera_unusable_and_scene_unusable",
+        "cast_suspected_without_an_estimate"
+      ],
+      "title": "WhiteBalanceReason",
+      "type": "string"
+    },
+    "ZoneStatus": {
+      "additionalProperties": false,
+      "description": "Whether a zone may be measured WITH, and why not when it may not.\n\nNot the same question as whether ``samples`` has numbers for it. A blown\ncheek and a sclera that read as lid shadow are both measured and both\nreported; this is what says they were not used.\n\n\"sclera: null\" in ``samples`` is not an answer anybody can act on - a closed\neye, a mask that missed, an eye too small in the original frame and an eye\nwhose two halves disagreed all look identical from there. The reason existed\nall along; it just lived in the debug artifacts, where a consumer of the\ncontract could not see it.",
+      "properties": {
+        "usable": {
+          "description": "May this zone be measured WITH? False covers both 'nothing was measured' and 'measured, and then ruled out' - `samples` says which, by whether it has numbers for it.",
+          "title": "Usable",
+          "type": "boolean"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Why not: too_few_pixels, eye_too_small, too_dark, too_noisy, overexposed, not_brighter_than_iris, darker_than_skin, more_chromatic_than_skin, eyes_disagree. Null when the zone is usable.",
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "usable"
+      ],
+      "title": "ZoneStatus",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "What ``Engine.analyze`` returns and what the HTTP layer will serve.\n\nNon-contract extras (debug artifacts, step timings) live in private\nattributes exposed as properties, so they never leak into ``to_json``.",
+  "properties": {
+    "status": {
+      "$ref": "#/$defs/Status"
+    },
+    "reject_reason": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RejectReason"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Set if and only if status == 'rejected'."
+    },
+    "source_color_space": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "ICC profile found in the input, or 'sRGB (assumed)' when untagged.",
+      "title": "Source Color Space"
+    },
+    "samples": {
+      "$ref": "#/$defs/Samples",
+      "description": "Measured colour per zone, already adapted to D65 when white balance was applied. The uncorrected values live in the debug artifacts, never in the contract."
+    },
+    "white_balance": {
+      "$ref": "#/$defs/WhiteBalance"
+    },
+    "zones": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ZoneStatus"
+      },
+      "description": "Per-zone verdict, keyed by the engine's own zone names: skin, left_cheek, right_cheek, forehead, hair, iris, iris_left, iris_right, sclera, sclera_left, sclera_right. Empty when the photo was refused before any zone was built.",
+      "title": "Zones",
+      "type": "object"
+    },
+    "axes": {
+      "$ref": "#/$defs/Axes"
+    },
+    "contrast": {
+      "$ref": "#/$defs/Contrast"
+    },
+    "seasons": {
+      "description": "Top 2 seasons, best first. Empty until classification.",
+      "items": {
+        "$ref": "#/$defs/SeasonScore"
+      },
+      "title": "Seasons",
+      "type": "array"
+    },
+    "confidence": {
+      "anyOf": [
+        {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "How much to trust the season call.",
+      "title": "Confidence"
+    },
+    "classifier": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Classifier"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Which classifier produced the seasons. Null when none ran."
+    },
+    "algo_version": {
+      "description": "Package version that produced this result.",
+      "title": "Algo Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "algo_version"
+  ],
+  "title": "ColorEngineAnalysisResult",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

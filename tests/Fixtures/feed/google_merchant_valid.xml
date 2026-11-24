@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Partner Feed</title>
+    <link>https://partner.test</link>
+    <description>Sample Google Merchant feed</description>
+
+    <item>
+      <g:id>ZARA-001</g:id>
+      <g:title>Linen Blend Shirt</g:title>
+      <g:brand>Zara</g:brand>
+      <g:link>https://shop.test/zara/001</g:link>
+      <g:image_link>https://cdn.test/zara/001.jpg</g:image_link>
+      <g:price>149.00 AED</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Shirts &amp; Tops</g:google_product_category>
+      <g:availability>in stock</g:availability>
+    </item>
+
+    <item>
+      <g:id>MANGO-777</g:id>
+      <g:title>Pleated Midi Skirt</g:title>
+      <g:brand>Mango</g:brand>
+      <g:link>https://shop.test/mango/777</g:link>
+      <g:image_link>https://cdn.test/mango/777.jpg</g:image_link>
+      <g:price>1,499.00 AED</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Skirts</g:google_product_category>
+    </item>
+
+    <item>
+      <g:id>ZARA-009</g:id>
+      <g:title>Satin Slip Dress</g:title>
+      <g:brand>Zara</g:brand>
+      <g:link>https://shop.test/zara/009</g:link>
+      <g:image_link>https://cdn.test/zara/009.jpg</g:image_link>
+      <g:price>AED 299.50</g:price>
+      <g:product_type>Women > Dresses > Evening</g:product_type>
+    </item>
+
+  </channel>
+</rss>

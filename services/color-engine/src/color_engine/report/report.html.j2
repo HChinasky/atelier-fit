@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<style>
+  :root {
+    --ink: #2d2d2d;
+    --muted: #6b6b6b;
+    --surface: #fbf8f3;
+    --line: #e3ddd4;
+    --danger: #b3261e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px;
+    font: 14px/1.5 ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+    color: var(--ink); background: #fff;
+  }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  h2 { font-size: 17px; margin: 0 0 12px; }
+  h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em;
+       color: var(--muted); margin: 20px 0 8px; font-weight: 600; }
+  .sub { color: var(--muted); margin: 0 0 28px; }
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line); }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 20px;
+          margin-bottom: 24px; background: #fff; }
+  .badge { display: inline-block; padding: 2px 9px; border-radius: 999px;
+           font-size: 12px; font-weight: 600; }
+  .badge.ok { background: var(--surface); color: var(--ink); }
+  .badge.rejected { background: #fdeceb; color: var(--danger); }
+  .grid { display: flex; flex-wrap: wrap; gap: 16px; }
+  .shot { flex: 0 1 auto; }
+  .shot img { display: block; max-width: 100%; border-radius: 6px; border: 1px solid var(--line); }
+  .shot figcaption { color: var(--muted); font-size: 12px; margin-top: 6px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 28px; color: var(--muted); margin: 0 0 4px; }
+  .meta b { color: var(--ink); font-weight: 600; }
+  .swatch { display: inline-block; width: 34px; height: 18px; border-radius: 3px;
+            border: 1px solid var(--line); vertical-align: middle; }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 7px; }
+  .none { color: var(--muted); }
+  .insufficient { color: var(--danger); font-size: 12px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 18px; color: var(--muted);
+            font-size: 12px; margin-top: 10px; }
+  code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 12px; }
+  .small { font-size: 12px; margin: 0 0 10px; }
+  .crop img { image-rendering: crisp-edges; }
+  .idx { color: var(--muted); }
+  .note { color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<h1>{{ title }}</h1>
+<p class="sub">Zone polygons are the landmark index sets from <code>zones.py</code>. Check them against the faces below; the masks shown are what was actually measured.</p>
+
+{% if summary %}
+<div class="card">
+  <h2>Stability across lighting</h2>
+  <p class="sub small">CIEDE2000 between each photo and the same person's reference condition,
+    <b>before</b> and <b>after</b> the illuminant was divided out ({{ summary.algo_version }}).
+    Saved as <code>summary.json</code> next to this file.</p>
+  <p class="sub small note"><b>The &ldquo;after&rdquo; column is calculated by this report.</b>
+    <code>report</code> switches white balance on for itself whatever
+    <code>COLOR_ENGINE_WHITE_BALANCE_ENABLED</code> is set to, because measuring what the
+    correction would do is the point of the command. It is what the correction <em>would</em>
+    return, not what a deployment with the switch off returns &mdash; and until
+    <code>sclera_target_ab</code> is measured on a real set, it carries a systematic cool bias.</p>
+
+  <p class="meta">
+    <span><b>Grouped by</b> {{ summary.labels.source if summary.labels else 'none' }}</span>
+    <span><b>People</b> {{ summary.people }}</span>
+    <span><b>Photos</b> {{ summary.photos }}</span>
+    <span><b>Analysed</b> {{ summary.analysed }}</span>
+    {% if summary.white_balance %}
+    {% for method, count in summary.white_balance.methods | dictsort %}
+    <span><b>{{ method }}</b> {{ count }}</span>
+    {% endfor %}
+    <span><b>color_cast</b> {{ summary.white_balance.color_cast }}</span>
+    {% endif %}
+  </p>
+
+  {% if summary.skin_delta_e %}
+  <h3>Skin ΔE to the reference condition</h3>
+  <table>
+    <thead><tr><th></th><th>Photos</th><th>Median</th><th>p90</th><th>Max</th></tr></thead>
+    <tbody>
+    {% for label, spread in [('before', summary.skin_delta_e.before), ('after', summary.skin_delta_e.after)] %}
+      {% if spread %}
+      <tr>
+        <td><b>{{ label }}</b></td><td>{{ spread.photos }}</td>
+        <td>{{ '%.2f'|format(spread.median) }}</td>
+        <td>{{ '%.2f'|format(spread.p90) }}</td>
+        <td>{{ '%.2f'|format(spread.max) }}</td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+  {% if summary.white_balance and summary.white_balance.sclera_daylight_ab %}
+  <p class="small note">Measured sclera a*b* across the {{ summary.white_balance.sclera_daylight_ab.photos }}
+    daylight frame(s), uncorrected:
+    <b>a* {{ '%.2f'|format(summary.white_balance.sclera_daylight_ab.a) }},
+       b* {{ '%.2f'|format(summary.white_balance.sclera_daylight_ab.b) }}</b>.
+    Under daylight the light is close to D65, so this is close to the sclera's own colour — it is
+    what <code>sclera_target_ab</code> should be set to, instead of (0, 0).</p>
+  {% endif %}
+
+  {% if summary.labels and (summary.labels.warnings or summary.labels.skipped) %}
+  <h3>Labels</h3>
+  <ul class="small">
+    {% for warning in summary.labels.warnings %}
+      <li class="insufficient">{{ warning }}</li>
+    {% endfor %}
+    {% for entry in summary.labels.skipped %}
+      <li class="note">not grouped: <code>{{ entry.file }}</code> — {{ entry.reason }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if summary.by_lighting %}
+  <h3>Skin ΔE by lighting</h3>
+  <table>
+    <thead>
+      <tr><th>Lighting</th><th>Photos</th>
+        <th>Median before</th><th>Median after</th>
+        <th>p90 before</th><th>p90 after</th></tr>
+    </thead>
+    <tbody>
+    {% for lighting, block in summary.by_lighting | dictsort %}
+      <tr>
+        <td>{{ lighting }}</td><td>{{ block.photos }}</td>
+        <td>{{ '%.2f'|format(block.before.median) if block.before else '—' }}</td>
+        <td>{{ '%.2f'|format(block.after.median) if block.after else '—' }}</td>
+        <td>{{ '%.2f'|format(block.before.p90) if block.before else '—' }}</td>
+        <td>{{ '%.2f'|format(block.after.p90) if block.after else '—' }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+  {% for person in people %}
+  <h3>{{ person.person_id }}
+    <span class="note">reference: {{ person.reference_file or '—' }} ({{ person.reference_kind }})</span></h3>
+  <table>
+    <thead>
+      <tr><th>File</th><th>Lighting</th><th>Status</th><th>WB</th>
+        {% for zone in tracked_zones %}<th>{{ zone }} L*</th><th>a*</th><th>b*</th><th>ΔE before</th><th>ΔE after</th>{% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+    {% for photo in person.photos %}
+      <tr>
+        <td>{{ photo.filename }}{% if photo.is_reference %} <span class="note">(ref)</span>{% endif %}</td>
+        <td>{{ photo.lighting or '—' }}</td>
+        <td><span class="badge {{ 'ok' if photo.status == 'ok' else 'rejected' }}">{{ photo.reject_reason or photo.status }}</span></td>
+        <td class="note">{{ photo.method or '—' }}{% if photo.single_eye %} (one eye){% endif %}</td>
+        {% for zone in tracked_zones %}
+          {% set s = photo.samples.get(zone) %}
+          <td>{{ '%.1f'|format(s.L) if s else '—' }}</td>
+          <td>{{ '%.1f'|format(s.a) if s else '—' }}</td>
+          <td>{{ '%.1f'|format(s.b) if s else '—' }}</td>
+          <td class="note">{{ '%.2f'|format(photo.deltas_before.get(zone)) if photo.deltas_before.get(zone) is not none else '—' }}</td>
+          <td>{{ '%.2f'|format(photo.deltas.get(zone)) if photo.deltas.get(zone) is not none else '—' }}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="card">
+  <h2>Summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>File</th><th>Status</th><th>Reason</th><th>Faces</th>
+        <th>Skin L*</th><th>Skin a*</th><th>Skin b*</th><th>Hair L*</th><th>Iris L*</th>
+        <th>Colour space</th><th>ms</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for entry in entries %}
+      {% set skin = (entry.zone_rows | selectattr('name', 'equalto', 'skin') | list | first) %}
+      {% set hair = (entry.zone_rows | selectattr('name', 'equalto', 'hair') | list | first) %}
+      {% set iris = (entry.zone_rows | selectattr('name', 'equalto', 'iris') | list | first) %}
+      <tr>
+        <td><a href="#{{ loop.index }}">{{ entry.filename }}</a></td>
+        <td><span class="badge {{ entry.status }}">{{ entry.status }}</span></td>
+        <td>{{ entry.reject_reason or '' }}</td>
+        <td>{{ entry.face_count }}</td>
+        <td>{{ '%.1f'|format(skin.sample.L) if skin and skin.sample else '—' }}</td>
+        <td>{{ '%.1f'|format(skin.sample.a) if skin and skin.sample else '—' }}</td>
+        <td>{{ '%.1f'|format(skin.sample.b) if skin and skin.sample else '—' }}</td>
+        <td>{{ '%.1f'|format(hair.sample.L) if hair and hair.sample else '—' }}</td>
+        <td>{{ '%.1f'|format(iris.sample.L) if iris and iris.sample else '—' }}</td>
+        <td>{{ entry.source_color_space or '—' }}</td>
+        <td>{{ '%.0f'|format(entry.total_ms) }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% for entry in entries %}
+<div class="card" id="{{ loop.index }}">
+  <h2>{{ entry.filename }} <span class="badge {{ entry.status }}">{{ entry.status }}{% if entry.reject_reason %} · {{ entry.reject_reason }}{% endif %}</span></h2>
+
+  {% if entry.error %}
+    <p class="insufficient">{{ entry.error }}</p>
+  {% endif %}
+
+  <p class="meta">
+    <span><b>Colour space</b> {{ entry.source_color_space or '—' }}</span>
+    <span><b>Format</b> {{ entry.source_format or '—' }}</span>
+    <span><b>Original</b> {{ entry.original_size or '—' }}</span>
+    <span><b>Measured</b> {{ entry.measured_size or '—' }}{% if entry.downscaled %} (downscaled){% endif %}</span>
+    <span><b>Faces</b> {{ entry.face_count }}</span>
+  </p>
+  {% if entry.head_pose %}
+  <p class="meta">
+    <span><b>Head pose</b> ({{ entry.head_pose_source }})</span>
+    <span>yaw {{ '%.1f'|format(entry.head_pose.yaw_deg) if entry.head_pose.yaw_deg is not none else '—' }}°</span>
+    <span>pitch {{ '%.1f'|format(entry.head_pose.pitch_deg) if entry.head_pose.pitch_deg is not none else '—' }}°</span>
+    <span>roll {{ '%.1f'|format(entry.head_pose.roll_deg) if entry.head_pose.roll_deg is not none else '—' }}°</span>
+    <span>asymmetry {{ '%.3f'|format(entry.head_pose.asymmetry) if entry.head_pose.asymmetry is not none else '—' }}</span>
+  </p>
+  {% endif %}
+
+  <h3>Images</h3>
+  <div class="grid">
+    {% for key, caption in [('original', 'As uploaded'), ('converted', 'After EXIF + ICC → sRGB'), ('overlay', 'Zones and polygons'), ('segmentation', 'Segmenter classes')] %}
+      {% if entry.images.get(key) %}
+      <figure class="shot">
+        <img src="{{ entry.images[key] }}" alt="{{ caption }}">
+        <figcaption>{{ caption }}</figcaption>
+      </figure>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% if entry.images.get('overlay') %}
+  <div class="legend">
+    {% for name, rgb in zone_colors.items() %}
+      <span><span class="dot" style="background: rgb({{ rgb[0] }},{{ rgb[1] }},{{ rgb[2] }})"></span>{{ name }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if entry.crops %}
+  <h3>Zone close-ups</h3>
+  <div class="grid">
+    {% for caption, src in entry.crops %}
+    <figure class="shot crop">
+      <img src="{{ src }}" alt="{{ caption }}">
+      <figcaption>{{ caption }}</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <h3>Zones</h3>
+  <table>
+    <thead>
+      <tr><th>Zone</th><th>Swatch</th><th>L*</th><th>a*</th><th>b*</th><th>C*</th><th>h°</th>
+          <th>L* IQR</th><th>Mask px</th><th>% of face</th><th>Sampled px</th></tr>
+    </thead>
+    <tbody>
+    {% for row in entry.zone_rows %}
+      <tr>
+        <td><span class="dot" style="background: {{ row.color }}"></span>{{ row.name }}
+          {% if row.insufficient %}<span class="insufficient">{{ row.insufficient_reason or 'insufficient' }}</span>{% endif %}</td>
+        {% if row.sample %}
+        <td><span class="swatch" style="background: {{ row.swatch }}" title="{{ row.swatch }}"></span></td>
+        <td>{{ '%.2f'|format(row.sample.L) }}</td>
+        <td>{{ '%.2f'|format(row.sample.a) }}</td>
+        <td>{{ '%.2f'|format(row.sample.b) }}</td>
+        <td>{{ '%.2f'|format(row.sample.C) }}</td>
+        <td>{{ '%.1f'|format(row.sample.h) }}</td>
+        <td>{{ '%.2f'|format(row.sample.L_iqr) }}</td>
+        <td>{{ row.pixels }}</td>
+        <td>{{ '%.2f'|format(row.face_pct) if row.face_pct is not none else '—' }}</td>
+        <td>{{ row.sample.pixels }}</td>
+        {% else %}
+        <td colspan="8" class="none">not measured</td>
+        <td>{{ row.pixels }}</td>
+        <td>{{ '%.2f'|format(row.face_pct) if row.face_pct is not none else '—' }}</td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  {% if entry.white_balance %}
+  <h3>White balance</h3>
+  <p class="meta">
+    <span><b>Method</b> {{ entry.white_balance.method }}</span>
+    <span><b>Single eye</b> {{ 'yes' if entry.white_balance.single_eye else 'no' }}</span>
+    <span><b>Strength (Δu'v')</b> {{ '%.4f'|format(entry.white_balance.correction_strength) }}</span>
+    <span><b>CCT</b>
+      {{ '%.0f K'|format(entry.white_balance.estimated_cct) if entry.white_balance.estimated_cct is not none else '—' }}</span>
+    {% if entry.white_balance.illuminant_xy %}
+    <span><b>Illuminant xy</b>
+      {{ '%.4f'|format(entry.white_balance.illuminant_xy[0]) }},
+      {{ '%.4f'|format(entry.white_balance.illuminant_xy[1]) }}</span>
+    {% endif %}
+    {% if entry.white_balance.confidence_factor is not none %}
+    <span><b>Confidence ×</b> {{ '%.2f'|format(entry.white_balance.confidence_factor) }}</span>
+    {% endif %}
+    {% if entry.white_balance.suspicion %}
+    <span><b>Suspicion</b> <span class="insufficient">{{ entry.white_balance.suspicion }}</span></span>
+    {% endif %}
+  </p>
+  {% if entry.white_balance.notes %}
+  <ul class="small">
+    {% for note in entry.white_balance.notes %}<li class="note">{{ note }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if entry.images.get('corrected') %}
+  <div class="grid">
+    <figure class="shot">
+      <img src="{{ entry.images['converted'] }}" alt="Before white balance">
+      <figcaption>Before — as measured</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="{{ entry.images['corrected'] }}" alt="After white balance">
+      <figcaption>After — adapted to D65 (preview only; the samples are corrected on their own)</figcaption>
+    </figure>
+  </div>
+  {% endif %}
+
+  {% if entry.correction_rows %}
+  <table>
+    <thead>
+      <tr><th>Zone</th><th colspan="2">Before</th><th>L*</th><th>a*</th><th>b*</th>
+        <th colspan="2">After</th><th>L*</th><th>a*</th><th>b*</th><th>ΔE</th></tr>
+    </thead>
+    <tbody>
+    {% for row in entry.correction_rows %}
+      <tr>
+        <td>{{ row.name }}</td>
+        <td colspan="2">{% if row.swatch_before %}<span class="swatch" style="background: {{ row.swatch_before }}"></span>{% endif %}</td>
+        <td>{{ '%.2f'|format(row.before.L) if row.before else '—' }}</td>
+        <td>{{ '%.2f'|format(row.before.a) if row.before else '—' }}</td>
+        <td>{{ '%.2f'|format(row.before.b) if row.before else '—' }}</td>
+        <td colspan="2">{% if row.swatch_after %}<span class="swatch" style="background: {{ row.swatch_after }}"></span>{% endif %}</td>
+        <td>{{ '%.2f'|format(row.after.L) if row.after else '—' }}</td>
+        <td>{{ '%.2f'|format(row.after.a) if row.after else '—' }}</td>
+        <td>{{ '%.2f'|format(row.after.b) if row.after else '—' }}</td>
+        <td>{{ '%.2f'|format(row.delta_e) if row.delta_e is not none else '—' }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+  {% endif %}
+
+  {% if entry.sclera_sides %}
+  <h3>Sclera, per eye</h3>
+  <table>
+    <thead>
+      <tr><th>Eye</th><th>Mask px</th><th>Measured px</th><th>Median L*</th><th>Median C*</th>
+        <th>Base C*</th><th>a*b* spread</th><th>Verdict</th></tr>
+    </thead>
+    <tbody>
+    {% for side in entry.sclera_sides %}
+      <tr>
+        <td>{{ side.side }}</td>
+        <td>{{ side.pixels_before }}</td>
+        <td>{{ side.pixels_after }}</td>
+        <td>{{ '%.2f'|format(side.median_L) if side.median_L is not none else '—' }}</td>
+        <td>{{ '%.2f'|format(side.median_C) if side.median_C is not none else '—' }}</td>
+        <td>{{ '%.2f'|format(side.chroma_base) if side.chroma_base is not none else '—' }}</td>
+        <td>{{ '%.2f'|format(side.ab_spread) if side.ab_spread is not none else '—' }}</td>
+        <td>{% if side.usable %}usable{% else %}<span class="insufficient">{{ side.reason }}</span>{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+  {% if entry.sclera_quality %}
+  <h3>Sclera quality</h3>
+  <p class="meta">
+    <span><b>Mask px</b> {{ entry.sclera_quality.pixels_before }}</span>
+    <span><b>Measured px</b> {{ entry.sclera_quality.pixels_after }}</span>
+    <span><b>Dropped</b> {{ '%.1f'|format(100 * entry.sclera_quality.dropped_fraction) }}%</span>
+    <span><b>Catchlight px</b> {{ entry.sclera_quality.specular_pixels }}</span>
+    <span><b>Median L*</b> {{ '%.2f'|format(entry.sclera_quality.median_L) if entry.sclera_quality.median_L is not none else '—' }}</span>
+    <span><b>Median C*</b> {{ '%.2f'|format(entry.sclera_quality.median_C) if entry.sclera_quality.median_C is not none else '—' }}</span>
+    <span><b>Base C*</b> {{ '%.2f'|format(entry.sclera_quality.chroma_base) if entry.sclera_quality.chroma_base is not none else '—' }}</span>
+    <span><b>a*b* spread</b> {{ '%.2f'|format(entry.sclera_quality.ab_spread) if entry.sclera_quality.ab_spread is not none else '—' }}</span>
+    <span><b>Usable</b>
+      {% if entry.sclera_quality.usable %}yes{% else %}<span class="insufficient">no · {{ entry.sclera_quality.reason }}</span>{% endif %}</span>
+  </p>
+  {% endif %}
+
+  {% if entry.quality %}
+  <h3>Quality gate</h3>
+  <p class="meta">
+    <span><b>Verdict</b>
+      {% if entry.quality.reject_reason %}<span class="insufficient">{{ entry.quality.reject_reason }}</span>{% else %}usable{% endif %}</span>
+    <span><b>Confidence ×</b> {{ '%.2f'|format(entry.confidence_factor) }}</span>
+    {% for name, value in entry.quality.signals | dictsort %}
+    <span><b>{{ name }}</b> {{ '%.3f'|format(value) if value is number else '—' }}</span>
+    {% endfor %}
+  </p>
+  {% if entry.quality.notes %}
+  <ul class="small">
+    {% for note in entry.quality.notes %}<li class="note">{{ note }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+  {% endif %}
+
+  <h3>Landmark indices</h3>
+  <p class="sub small">Mask area is a percentage of the face bounding box. Re-run with
+    <code>--landmark-labels zones</code> (or <code>all</code>) to see these numbers drawn on the
+    face, then edit the constant in <code>zones.py</code>.</p>
+  <table>
+    <thead>
+      <tr><th>Zone</th><th>Constant</th><th>Points</th><th>Indices</th><th>How it is built</th></tr>
+    </thead>
+    <tbody>
+    {% for row in entry.zone_rows %}
+      <tr>
+        <td><span class="dot" style="background: {{ row.color }}"></span>{{ row.name }}</td>
+        <td>{% if row.constant %}<code>{{ row.constant }}</code>{% else %}<span class="none">derived</span>{% endif %}</td>
+        <td>{{ row.point_count or '—' }}</td>
+        <td><code class="idx">{{ row.indices or '—' }}</code></td>
+        <td class="note">{{ row.note }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <h3>Timings (ms)</h3>
+  <p class="meta">
+    {% for step, ms in entry.timings.items() %}
+      <span><b>{{ step }}</b> {{ '%.1f'|format(ms) }}</span>
+    {% endfor %}
+    <span><b>total</b> {{ '%.1f'|format(entry.total_ms) }}</span>
+  </p>
+</div>
+{% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+*.log
+.DS_Store
+.env
+.env.backup
+.env.production
+.phpactor.json
+.phpunit.result.cache
+/.fleet
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+Homestead.json
+Homestead.yaml
+Thumbs.db
+~$*
+/roadmap.txt
+/ai-fitting-room-roadmap.docx
+
+# Local-only working scratch (notes, archives, dev sample photos)
+/Phase*.txt
+*.zip
+# Local-only drop folders for reference material.
+/feed_photo/
+/screen/
+
+# Python virtualenv & caches (pose-service microservice) — never committed,
+# regardless of whether the service source itself is later tracked.
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Self-hosted front-end assets (fonts, Alpine, Dropzone, country flags).
+# Downloaded build output, not source — populate with
+# scripts/fetch-vendor-assets.sh on every fresh checkout and on deploy.
+/public/vendor/
+/public/fonts/

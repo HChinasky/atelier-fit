@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Small Amazon Product Advertising API (ItemLookupResponse) fixture for
+  AmazonPaApiFeedParserTest. One item per rule the parser has to hold:
+    AMZ-OK       a complete, branded item (the happy path)
+    AMZ-NOBRAND  no <Brand>: imports under the fallback brand
+    AMZ-LISTPRC  no offer, only ItemAttributes/ListPrice: the fallback price
+    AMZ-USD      priced in USD: skipped
+    AMZ-NOIMG    no image at all: skipped
+    AMZ-NOCAT    a garment no needle in the category map names: skipped
+    AMZ-JACKET   feed category says "suits and jackets", title says jacket:
+                 the title wins (upper_body, not dresses)
+  The root carries the documented default namespace and the demo:* extension
+  namespace of the hand-built catalog, so both must be read transparently.
+-->
+<ItemLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01" xmlns:demo="urn:demo:affiliate-catalogue:1">
+  <demo:Metadata>
+    <demo:IsDemo>true</demo:IsDemo>
+  </demo:Metadata>
+  <Items>
+    <Item>
+      <ASIN>AMZ-OK</ASIN>
+      <DetailPageURL>https://www.amazon.ae/dp/AMZ-OK?tag=example-21</DetailPageURL>
+      <LargeImage>
+        <URL>https://cdn.test/amazon/AMZ-OK.jpg</URL>
+        <Height Units="pixels">1200</Height>
+        <Width Units="pixels">800</Width>
+      </LargeImage>
+      <ItemAttributes>
+        <Brand>GORGLITTER</Brand>
+        <Color>Белый</Color>
+        <ProductGroup>Apparel</ProductGroup>
+        <Title>Облегающее платье макси с вырезом лодочкой</Title>
+      </ItemAttributes>
+      <Offers>
+        <Offer>
+          <OfferListing>
+            <Price>
+              <Amount>11900</Amount>
+              <CurrencyCode>AED</CurrencyCode>
+              <FormattedPrice>AED 119.00</FormattedPrice>
+            </Price>
+          </OfferListing>
+        </Offer>
+      </Offers>
+      <EditorialReviews>
+        <EditorialReview>
+          <Source>Demo Product Description</Source>
+          <Content>Белое платье без рукавов.</Content>
+        </EditorialReview>
+      </EditorialReviews>
+      <demo:Metadata>
+        <demo:SourceTitle>GORGLITTER Women's Boat Neck Ruched Bodycon Maxi Dress</demo:SourceTitle>
+        <demo:Category>Платья</demo:Category>
+      </demo:Metadata>
+    </Item>
+
+    <Item>
+      <ASIN>AMZ-NOBRAND</ASIN>
+      <DetailPageURL>https://www.amazon.ae/dp/AMZ-NOBRAND?tag=example-21</DetailPageURL>
+      <LargeImage><URL>https://cdn.test/amazon/AMZ-NOBRAND.jpg</URL></LargeImage>
+      <ItemAttributes>
+        <Title>Спортивный комплект: топ и легинсы</Title>
+      </ItemAttributes>
+      <Offers><Offer><OfferListing><Price>
+        <Amount>7900</Amount>
+        <CurrencyCode>AED</CurrencyCode>
+      </Price></OfferListing></Offer></Offers>
+      <demo:Metadata><demo:Category>Спорт</demo:Category></demo:Metadata>
+    </Item>
+
+    <Item>
+      <ASIN>AMZ-LISTPRC</ASIN>
+      <DetailPageURL>https://www.amazon.ae/dp/AMZ-LISTPRC?tag=example-21</DetailPageURL>
+      <MediumImage><URL>https://cdn.test/amazon/AMZ-LISTPRC-medium.jpg</URL></MediumImage>
+      <ItemAttributes>
+        <Brand>Verdusa</Brand>
+        <Title>Асимметричная юбка миди с драпировкой</Title>
+        <ListPrice>
+          <Amount>5</Amount>
+          <CurrencyCode>aed</CurrencyCode>
+        </ListPrice>
+      </ItemAttributes>
+    </Item>
+
+    <Item>
+      <ASIN>AMZ-USD</ASIN>
+      <DetailPageURL>https://www.amazon.ae/dp/AMZ-USD?tag=example-21</DetailPageURL>
+      <LargeImage><URL>https://cdn.test/amazon/AMZ-USD.jpg</URL></LargeImage>
+      <ItemAttributes>
+        <Brand>SHENHE</Brand>
+        <Title>Широкие брюки с леопардовыми лампасами</Title>
+      </ItemAttributes>
+      <Offers><Offer><OfferListing><Price>
+        <Amount>3200</Amount>
+        <CurrencyCode>USD</CurrencyCode>
+      </Price></OfferListing></Offer></Offers>
+    </Item>
+
+    <Item>
+      <ASIN>AMZ-NOIMG</ASIN>
+      <DetailPageURL>https://www.amazon.ae/dp/AMZ-NOIMG?tag=example-21</DetailPageURL>
+      <ItemAttributes>
+        <Brand>SHENHE</Brand>
+        <Title>Полосатые брюки на завязках</Title>
+      </ItemAttributes>
+      <Offers><Offer><OfferListing><Price>
+        <Amount>9900</Amount>
+        <CurrencyCode>AED</CurrencyCode>
+      </Price></OfferListing></Offer></Offers>
+    </Item>
+
+    <Item>
+      <ASIN>AMZ-NOCAT</ASIN>
+      <DetailPageURL>https://www.amazon.ae/dp/AMZ-NOCAT?tag=example-21</DetailPageURL>
+      <LargeImage><URL>https://cdn.test/amazon/AMZ-NOCAT.jpg</URL></LargeImage>
+      <ItemAttributes>
+        <Brand>Shasmi</Brand>
+        <Title>Кожаная сумка через плечо</Title>
+      </ItemAttributes>
+      <Offers><Offer><OfferListing><Price>
+        <Amount>14900</Amount>
+        <CurrencyCode>AED</CurrencyCode>
+      </Price></OfferListing></Offer></Offers>
+      <demo:Metadata><demo:Category>Аксессуары</demo:Category></demo:Metadata>
+    </Item>
+
+    <Item>
+      <ASIN>AMZ-JACKET</ASIN>
+      <DetailPageURL>https://www.amazon.ae/dp/AMZ-JACKET?tag=example-21</DetailPageURL>
+      <LargeImage><URL>https://cdn.test/amazon/AMZ-JACKET.jpg</URL></LargeImage>
+      <ItemAttributes>
+        <Brand>Mina Self</Brand>
+        <Title>Укороченный твидовый жакет с лацканами</Title>
+      </ItemAttributes>
+      <Offers><Offer><OfferListing><Price>
+        <Amount>17900</Amount>
+        <CurrencyCode>AED</CurrencyCode>
+      </Price></OfferListing></Offer></Offers>
+      <demo:Metadata><demo:Category>Костюмы и жакеты</demo:Category></demo:Metadata>
+    </Item>
+  </Items>
+</ItemLookupResponse>

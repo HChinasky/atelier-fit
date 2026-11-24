@@ -1,0 +1,86 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "color-engine"
+version = "0.1.0"
+description = "Seasonal colour analysis (12 seasons) from a face photo. Library only — no HTTP."
+readme = "README.md"
+# 3.10 is what pose-service runs (its .venv is CPython 3.10.0) and the upper
+# bound is MediaPipe 0.10.21's last supported interpreter.
+requires-python = ">=3.10,<3.13"
+license = { text = "Proprietary" }
+
+dependencies = [
+    # Pinned to the exact version pose-service uses so both can share one venv.
+    "mediapipe==0.10.21",
+    # <2 for MediaPipe 0.10.x, same constraint pose-service documents.
+    "numpy>=1.26,<2",
+    "opencv-python-headless==4.10.0.84",
+    "pillow==11.1.0",
+    "pillow-heif>=0.18,<1",
+    # Every sRGB -> XYZ -> CIELAB conversion goes through colour-science.
+    # We never hand-roll colour maths.
+    "colour-science>=0.4.4,<0.5",
+    "pydantic>=2.9,<3",
+    "pydantic-settings>=2.5,<3",
+    "typer>=0.12,<1",
+    "jinja2>=3.1,<4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3,<9",
+    "ruff>=0.6,<1",
+    "mypy>=1.11,<2",
+    "jsonschema>=4.23,<5",
+    "types-jsonschema>=4.23,<5",
+]
+
+[project.scripts]
+color-engine = "color_engine.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/color_engine"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "requires_models: needs the MediaPipe .task/.tflite files in models/ (scripts/fetch_models.py)",
+    "requires_fixtures: needs a reference photo set at COLOR_ENGINE_FIXTURES_DIR",
+]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "C4", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+# typer's whole API is function calls in argument defaults; B008 cannot apply.
+"src/color_engine/cli.py" = ["B008"]
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+python_version = "3.10"
+files = ["src", "tests", "scripts"]
+strict = true
+warn_unused_ignores = false
+
+[[tool.mypy.overrides]]
+# None of these ship type information.
+module = ["mediapipe.*", "colour.*", "pillow_heif.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+# opencv's bundled stubs are generated from the C++ signatures and get numpy
+# dtypes wrong (a uint8 mask is not accepted where `dtype[integer]` is declared,
+# because dtype is invariant). Treat the module as untyped rather than sprinkling
+# ignores over every drawing call.
+module = ["cv2.*"]
+follow_imports = "skip"
+ignore_missing_imports = true

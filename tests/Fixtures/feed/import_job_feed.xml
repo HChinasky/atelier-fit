@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Partner Feed</title>
+
+    <!-- allowed brand, valid → imported -->
+    <item>
+      <g:id>ZARA-100</g:id>
+      <g:title>Oxford Shirt</g:title>
+      <g:brand>Zara</g:brand>
+      <g:link>https://shop.test/zara/100</g:link>
+      <g:image_link>https://cdn.test/zara/100.jpg</g:image_link>
+      <g:price>199.00 AED</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Shirts</g:google_product_category>
+    </item>
+
+    <!-- allowed brand, valid dress with thousands separator → imported -->
+    <item>
+      <g:id>MANGO-200</g:id>
+      <g:title>Maxi Dress</g:title>
+      <g:brand>Mango</g:brand>
+      <g:link>https://shop.test/mango/200</g:link>
+      <g:image_link>https://cdn.test/mango/200.jpg</g:image_link>
+      <g:price>1,250.00 AED</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Dresses</g:google_product_category>
+    </item>
+
+    <!-- disallowed brand → filtered by the job -->
+    <item>
+      <g:id>NIKE-300</g:id>
+      <g:title>Running Shorts</g:title>
+      <g:brand>Nike</g:brand>
+      <g:link>https://shop.test/nike/300</g:link>
+      <g:image_link>https://cdn.test/nike/300.jpg</g:image_link>
+      <g:price>120.00 AED</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Shorts</g:google_product_category>
+    </item>
+
+    <!-- allowed brand but foreign currency → skipped by the parser -->
+    <item>
+      <g:id>ZARA-400</g:id>
+      <g:title>Silk Blouse</g:title>
+      <g:brand>Zara</g:brand>
+      <g:link>https://shop.test/zara/400</g:link>
+      <g:image_link>https://cdn.test/zara/400.jpg</g:image_link>
+      <g:price>99.00 USD</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Shirts &amp; Tops</g:google_product_category>
+    </item>
+
+    <!-- allowed brand but category maps to nothing → skipped by the parser -->
+    <item>
+      <g:id>MANGO-500</g:id>
+      <g:title>Leather Handbag</g:title>
+      <g:brand>Mango</g:brand>
+      <g:link>https://shop.test/mango/500</g:link>
+      <g:image_link>https://cdn.test/mango/500.jpg</g:image_link>
+      <g:price>450.00 AED</g:price>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Handbags</g:google_product_category>
+    </item>
+
+  </channel>
+</rss>

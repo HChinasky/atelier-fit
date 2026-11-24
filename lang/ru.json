@@ -1,0 +1,13 @@
+{
+    "(and :count more error)": "(и ещё :count ошибка)",
+    "(and :count more errors)": "(и ещё :count ошибка)|(и ещё :count ошибки)|(и ещё :count ошибок)",
+    "The given data was invalid.": "Данные заполнены некорректно.",
+    "Unauthorized": "Нужно войти",
+    "Payment Required": "Нужна оплата",
+    "Forbidden": "Доступ запрещён",
+    "Not Found": "Страница не найдена",
+    "Page Expired": "Страница устарела",
+    "Too Many Requests": "Слишком много запросов",
+    "Server Error": "Ошибка сервера",
+    "Service Unavailable": "Сервис временно недоступен"
+}

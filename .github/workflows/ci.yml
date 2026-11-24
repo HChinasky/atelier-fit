@@ -1,0 +1,95 @@
+name: CI
+
+# Blocking gate: runs the full Pest suite on every push to main and on every
+# pull request targeting main. The same tests as local — CI only supplies the
+# service addresses/credentials via env; no test logic is duplicated here.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Job/check name is intentionally the stable, version-agnostic "tests" so it
+  # can be wired as a required status check in branch protection without
+  # breaking when the PHP version or services change. Do NOT rename this.
+  tests:
+    name: tests
+    runs-on: ubuntu-latest
+
+    # Real environment variables. Laravel's dotenv is immutable, so these
+    # OVERRIDE the committed .env.testing values — the only thing that differs
+    # between local Docker (DB_HOST=pgsql / REDIS_HOST=redis) and CI is these
+    # values pointing at the GitHub Actions services on localhost. No secrets:
+    # these match the local Sail defaults; R2/FASHN/ManyChat stay mocked.
+    env:
+      APP_ENV: testing
+      DB_CONNECTION: pgsql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 5432
+      DB_DATABASE: testing
+      DB_USERNAME: sail
+      DB_PASSWORD: password
+      REDIS_CLIENT: predis
+      REDIS_HOST: 127.0.0.1
+      REDIS_PORT: 6379
+
+    services:
+      # Same major versions as the local Sail stack so CI catches the same
+      # Postgres specifics (JSONB, upsert, partial indexes). POSTGRES_DB creates
+      # the dedicated "testing" database at service startup — the local Sail
+      # create-testing-database.sql does not run here, so the service does it.
+      postgres:
+        image: postgres:18-alpine
+        env:
+          POSTGRES_USER: sail
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: testing
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U sail -d testing"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          # pdo_pgsql for Postgres; pcntl/posix satisfy Horizon's platform
+          # requirements at composer-install time (present on Linux runners).
+          # Redis uses the pure-PHP predis client, so no phpredis extension.
+          extensions: pdo_pgsql, pcntl, posix
+          coverage: none
+          tools: composer:v2
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php82-vendor-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-php82-vendor-
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Run Pest
+        # RefreshDatabase migrates a fresh schema onto the "testing" database
+        # and wraps each test in a rolled-back transaction. R2 stays faked,
+        # queue=sync, cache/session=array — no external calls.
+        run: ./vendor/bin/pest

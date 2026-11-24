@@ -1,0 +1,13 @@
+{
+    "(and :count more error)": "(وخطأ آخر)",
+    "(and :count more errors)": "(و:count أخطاء أخرى)|(وخطأ آخر)|(وخطآن آخران)|(و:count أخطاء أخرى)|(و:count خطأً آخر)|(و:count خطأ آخر)",
+    "The given data was invalid.": "البيانات المدخلة غير صحيحة.",
+    "Unauthorized": "يلزم تسجيل الدخول",
+    "Payment Required": "يلزم الدفع",
+    "Forbidden": "الوصول غير مسموح",
+    "Not Found": "الصفحة غير موجودة",
+    "Page Expired": "انتهت صلاحية الصفحة",
+    "Too Many Requests": "طلبات كثيرة جدًا",
+    "Server Error": "خطأ في الخادم",
+    "Service Unavailable": "الخدمة غير متاحة مؤقتًا"
+}
