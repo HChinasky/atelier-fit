@@ -4,9 +4,7 @@
 
 Atelier Fit lets a shopper upload a photo of themselves, pick garments from a catalogue imported from a partner feed, and get an AI-generated image of themselves wearing them. A member area adds a credit wallet, saved looks, a wardrobe, outfit capsules and an experimental seasonal colour-type analysis. It was built for a stylist's site in the UAE market and is a Laravel backend with Blade/Alpine pages and two small Python services.
 
-<!-- Screenshot: add one at docs/screenshot.png and uncomment the next line.
-![Atelier Fit member area](docs/screenshot.png)
--->
+Screenshot: ![Atelier Fit member area](docs/screenshot.png)
 
 **Status.** A working application with a full test suite, built almost entirely with Claude Code under the rules in [`CLAUDE.md`](CLAUDE.md). Payments are not connected (plan buttons are deliberately inert), and the colour classifier is an unvalidated draft — see [Limitations](#limitations).
 
@@ -25,7 +23,6 @@ flowchart LR
     Laravel --> R2[("Cloudflare R2<br/>photos, results")]
     Horizon --> R2
     Laravel -->|e-mail code| Mail["SMTP relay"]
-    Laravel -->|leads| ManyChat["ManyChat"]
 ```
 
 | Part | Where | Role |
@@ -86,7 +83,7 @@ docker compose exec laravel.test php vendor/bin/pest            # PHP suite (rea
 (cd services/color-engine && python -m pytest)                  # colour engine
 ```
 
-The PHP suite is about 1,500 test runs (Pest cases plus dataset rows) against a real PostgreSQL database rather than SQLite, so JSONB, upserts and partial indexes are exercised. FASHN, fal, ManyChat, R2 and mail are always faked. CI (`.github/workflows/ci.yml`) runs the PHP suite on every push and pull request.
+The PHP suite is about 1,500 test runs (Pest cases plus dataset rows) against a real PostgreSQL database rather than SQLite, so JSONB, upserts and partial indexes are exercised. FASHN, fal, R2 and mail are always faked. CI (`.github/workflows/ci.yml`) runs the PHP suite on every push and pull request.
 
 ## Design decisions
 
